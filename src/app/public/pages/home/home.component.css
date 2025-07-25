@@ -1,0 +1,319 @@
+.home {
+  .hero {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+
+    .hero-text {
+      flex: 1 1 300px;
+      h1 { font-size: 2rem; margin-bottom: 1rem; }
+      p  { margin-bottom: 1.5rem; color: #555; }
+      /* .btn-outline { border: 1px solid #333; background: none; padding: 0.5rem 1rem; } */
+      .hint { display: block; margin-top: 0.2rem; margin-bottom: -1px; color: #0f0f0f; }
+    }
+
+    .hero-media {
+      flex: 1 1 300px;
+      video, iframe {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+    }
+  }
+}
+
+/* src/app/public/pages/home/home.component.scss */
+.pricing-section {
+  padding: 3rem 2rem;
+  background: #e0e0e0;  /* gris de fondo */
+  text-align: center;
+
+  .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .table-wrapper {
+    position: relative;
+    overflow-x: auto;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 8rem; /* alto del fade */
+      pointer-events: none;
+      background: linear-gradient(to bottom, rgba(224,224,224,0) 0%, rgba(224,224,224,1) 100%);
+    }
+  }
+  
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+
+    th, td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #999;
+    }
+    th {
+      font-weight: bold;
+    }
+    td {
+      text-align: center;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
+
+  .btn-select {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #333;
+    background: none;
+    cursor: pointer;
+  }
+
+  .more-btn {
+    text-align: center;
+  }
+  .btn-more {
+    padding: 0.5rem 1rem;
+    border: 1px solid #333;
+    background: none;
+    cursor: pointer;
+  }
+}
+
+/* src/app/public/pages/home/home.component.scss */
+.features-section {
+  background-color: #d8d8d8cc;
+  text-align: center; /* centra el título */
+
+  .features-title {
+    margin-bottom: 2rem;
+  }
+  .features-grid {
+   display: flex;
+    flex-wrap: wrap;            /* permite que las tarjetas pasen a la siguiente fila */
+    justify-content: center;    /* centra las tarjetas en cada fila */
+    align-items: flex-start;    /* alinea el contenido en el tope de cada tarjeta */
+    gap: 1.5rem;                /* separación horizontal y vertical */
+    margin: 0 auto;             /* opcional, centra todo el grid dentro del contenedor */
+    max-width: 1200px;          /* limita el ancho si quieres */
+  }
+    .feature-card {
+      width: 200px;
+      height: 250px;       /* ajusta según tu contenido */
+      perspective: 1000px; /* clave para el 3D flip */
+      margin: 0 auto;
+
+      .card {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        cursor: pointer;
+
+        .card-inner {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          transition: transform 0.6s;
+          transform-style: preserve-3d;
+        }
+
+        &:hover .card-inner {
+          transform: rotateY(180deg);
+        }
+
+        .card-front,
+        .card-back {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          backface-visibility: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          border-radius: 8px;
+          overflow: hidden;
+        }
+
+        .card-front {
+          background: transparent;
+          .feature-icon {
+            width: 180px;
+            height: 180PX;
+            object-fit: contain;
+            margin-bottom: 0.5rem;
+          }
+          .feature-text {
+            font-size: 1rem;
+            color: #333;
+          }
+        }
+
+        .card-back {
+          background: rgba(255,255,255,0.7);
+          backdrop-filter: blur(4px);
+          transform: rotateY(180deg);
+          padding: 1rem;
+          text-align: center;
+          overflow-y: auto;
+
+          h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+          }
+          p {
+            font-size: 0.9rem;
+            line-height: 1.3;
+          }
+        }
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+
+/* … estilos previos … */
+
+.reviews-section {
+  padding: 3rem 2rem;
+  background: #dcdcdc;  /* gris claro */
+  text-align: center;
+
+  .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .reviews-slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+
+    .review-card {
+      flex: 0 0 250px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      scroll-snap-align: start;
+
+      .comment {
+        font-style: italic;
+        margin-bottom: 1rem;
+      }
+      .meta {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+
+        .rating {
+          color: #f5a623; /* color de las estrellas */
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  background: #333;
+  color: #eee;
+  padding: 2rem;
+  text-align: center;
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+
+    a {
+      color: #eee;
+      text-decoration: none;
+      font-size: 0.9rem;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .copyright {
+    font-size: 0.8rem;
+  }
+}
+
+.hero-text {
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.prueba-container {
+  display: flex;               /* Alinea horizontalmente */
+  align-items: center;         /* Centra verticalmente */
+  gap: 1rem;                   /* Espacio entre el botón y el texto */
+}
+
+.hint {
+  color: #777;
+  margin-left: 10px;           /* Espacio entre el botón y el texto */
+}
+
+.home {
+  .hero-text {
+    .btn-outline {
+      border: 1px solid #333;
+      background: transparent;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        background: #333;
+        color: #fff;
+        transform: translateY(-2px);
+  }
+}
+}
+
+  .pricing-section {
+    .btn-select,
+    .btn-more {
+      border: 1px solid #333;
+      background: transparent;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        background: #333;
+        color: #fff;
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+

@@ -1,0 +1,138 @@
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;  /* Logo + menú a la izquierda */
+  padding: 1rem 2rem;
+  background: #f5f5f5;
+
+  .logo {
+    a {
+      display: inline-block;  /* Para que el img respete su tamaño */
+      text-decoration: none;
+
+      img {
+        height: 45px;       /* Ajusta la altura a tu gusto */
+        width: auto; /* Mantiene la proporción */
+        margin-bottom: 0%;
+        padding-bottom: 0%;
+        transition: opacity 0.3s ease;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+
+  /* Separa un poco el nav del logo */
+  nav {
+    margin-left: 5rem;
+
+    ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        margin: 0 1rem; /* Ajusta este espacio entre items */
+
+        a {
+          position: relative;
+          display: inline-block;
+          padding: 0.25rem 0;
+          text-decoration: none;
+          color: #333;
+          font-weight: 500;
+          transition: color 0.3s ease-in-out;
+
+          &::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #333;
+            bottom: -4px;
+            left: 0;
+            transition: width 0.3s ease-in-out;
+          }
+
+          &:hover {
+            color: #000;
+
+            &::after {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Empuja las acciones a la derecha */
+
+    /* Transición global para todos los botones */
+    .btn-outline,
+    .btn-primary,
+    .icon-btn,
+    .btn-logout {
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .btn-outline {
+      border: 1px solid #333;
+      background: transparent;
+      padding: 0.5rem 1rem;
+      margin-right: 0.5rem;
+
+      &:hover {
+        background: #333;
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+    }
+
+    .btn-primary {
+      background: #333;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: none;
+
+      &:hover {
+        background: #555;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      }
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      margin: 0 0.5rem;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    .btn-logout {
+      background: none;
+      border: none;
+      color: #333;
+      margin-left: 0.5rem;
+      font-weight: 500;
+
+      &:hover {
+        color: #000;
+        transform: translateY(-1px);
+      }
+    }
+  }
+}

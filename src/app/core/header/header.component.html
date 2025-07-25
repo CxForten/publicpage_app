@@ -1,0 +1,42 @@
+<header class="main-header">
+  <div class="logo">
+  <a routerLink="/">
+    <img
+      src="assets/icons/gaia.png"
+      alt="GAIA"
+      class="logo-img"
+    />
+  </a>
+</div>
+  <nav>
+    <ul>
+      <li><a routerLink="/">Inicio</a></li>
+
+      <ng-container *ngIf="isLoggedIn$ | async; else anonNav">
+        <li><a routerLink="/user">Panel de Control</a></li>
+      </ng-container>
+
+      <ng-template #anonNav>
+        <li><a routerLink="/">Sobre Nosotros</a></li>
+        <li><a routerLink="/plans">Planes</a></li>
+
+      </ng-template>
+
+      <li><a routerLink="/support">Soporte</a></li>
+    </ul>
+  </nav>
+
+  <div class="actions">
+    <ng-container *ngIf="isLoggedIn$ | async; else anonActions">
+      <button class="icon-btn" routerLink="/notifications">🔔</button>
+      <button class="icon-btn" routerLink="/user/profile">👤</button>
+      <button (click)="logout()" class="btn-logout">Cerrar Sesión</button>
+    </ng-container>
+
+    <ng-template #anonActions>
+      <!-- Primero guiar al usuario a la lista de precios -->
+      <button routerLink="/auth/register" class="btn-outline">Prueba Gratis</button>
+      <button routerLink="/auth/login" class="btn-primary">Iniciar Sesión</button>
+    </ng-template>
+  </div>
+</header>
