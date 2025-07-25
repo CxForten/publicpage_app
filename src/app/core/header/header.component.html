@@ -1,14 +1,15 @@
 <header class="main-header">
   <div class="logo">
-  <a routerLink="/">
-    <img
-      src="assets/icons/gaia.png"
-      alt="GAIA"
-      class="logo-img"
-    />
-  </a>
-</div>
-  <nav>
+    <a routerLink="/">
+      <img src="assets/icons/gaia.png" alt="GAIA" class="logo-img" />
+    </a>
+  </div>
+
+  <!-- Botón hamburguesa visible solo en móvil -->
+  <button class="menu-toggle" (click)="menuOpen = !menuOpen">☰</button>
+
+  <!-- Menú navegable oculto en móvil hasta que se active -->
+  <nav [class.active]="menuOpen">
     <ul>
       <li><a routerLink="/">Inicio</a></li>
 
@@ -19,13 +20,13 @@
       <ng-template #anonNav>
         <li><a routerLink="/">Sobre Nosotros</a></li>
         <li><a routerLink="/plans">Planes</a></li>
-
       </ng-template>
 
       <li><a routerLink="/support">Soporte</a></li>
     </ul>
   </nav>
 
+  <!-- Botones visibles siempre (fuera del toggle) -->
   <div class="actions">
     <ng-container *ngIf="isLoggedIn$ | async; else anonActions">
       <button class="icon-btn" routerLink="/notifications">🔔</button>
@@ -34,7 +35,6 @@
     </ng-container>
 
     <ng-template #anonActions>
-      <!-- Primero guiar al usuario a la lista de precios -->
       <button routerLink="/auth/register" class="btn-outline">Prueba Gratis</button>
       <button routerLink="/auth/login" class="btn-primary">Iniciar Sesión</button>
     </ng-template>

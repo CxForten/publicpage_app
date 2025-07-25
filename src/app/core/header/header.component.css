@@ -1,20 +1,20 @@
 .main-header {
   display: flex;
   align-items: center;
-  justify-content: flex-start;  /* Logo + menú a la izquierda */
+  justify-content: space-between;
+  flex-wrap: wrap;
   padding: 1rem 2rem;
   background: #f5f5f5;
+  position: relative;
 
   .logo {
     a {
-      display: inline-block;  /* Para que el img respete su tamaño */
+      display: inline-block;
       text-decoration: none;
 
       img {
-        height: 45px;       /* Ajusta la altura a tu gusto */
-        width: auto; /* Mantiene la proporción */
-        margin-bottom: 0%;
-        padding-bottom: 0%;
+        height: 45px;
+        width: auto;
         transition: opacity 0.3s ease;
 
         &:hover {
@@ -24,18 +24,27 @@
     }
   }
 
-  /* Separa un poco el nav del logo */
+
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
   nav {
     margin-left: 5rem;
 
     ul {
       display: flex;
+      flex-wrap: wrap;
       list-style: none;
       margin: 0;
       padding: 0;
 
       li {
-        margin: 0 1rem; /* Ajusta este espacio entre items */
+        margin: 0 1rem;
 
         a {
           position: relative;
@@ -72,9 +81,9 @@
   .actions {
     display: flex;
     align-items: center;
-    margin-left: auto; /* Empuja las acciones a la derecha */
+    margin-left: auto;
+    gap: 0.5rem;
 
-    /* Transición global para todos los botones */
     .btn-outline,
     .btn-primary,
     .icon-btn,
@@ -88,13 +97,12 @@
       border: 1px solid #333;
       background: transparent;
       padding: 0.5rem 1rem;
-      margin-right: 0.5rem;
 
       &:hover {
         background: #333;
         color: #fff;
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       }
     }
 
@@ -107,7 +115,7 @@
       &:hover {
         background: #555;
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       }
     }
 
@@ -115,7 +123,6 @@
       background: none;
       border: none;
       font-size: 1.25rem;
-      margin: 0 0.5rem;
 
       &:hover {
         transform: scale(1.1);
@@ -126,7 +133,6 @@
       background: none;
       border: none;
       color: #333;
-      margin-left: 0.5rem;
       font-weight: 500;
 
       &:hover {
@@ -135,4 +141,55 @@
       }
     }
   }
+
+  /* 🔽 Responsive para pantallas pequeñas */
+  @media (max-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+
+    .menu-toggle {
+      display: block;
+      margin-left: auto;
+    }
+
+    nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: #f5f5f5;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+
+      &.active {
+        max-height: 500px; 
+        padding: 1rem 2rem;
+      }
+
+      ul {
+        flex-direction: column;
+        align-items: flex-start;
+
+        li {
+          margin: 0.5rem 0;
+          width: 100%;
+
+          a {
+            padding: 0.5rem 1rem;
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .actions {
+      margin-left: 0;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      width: 100%;
+    }
+  }
 }
+
