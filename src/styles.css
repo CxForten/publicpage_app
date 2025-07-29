@@ -1,0 +1,89 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: #1e293b;
+}
+
+/* ============================== */
+/* MOBILE SALDO CENTERING FIX    */
+/* ============================== */
+
+@media (max-width: 768px) {
+  /* Selector ultra específico para el contenedor del saldo */
+  .dashboard-container .section-wrapper .section-form .card {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  /* Selector específico para el display del saldo */
+  .dashboard-container .section-wrapper .section-form .card .saldo-display {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+  
+  /* Selector específico para la cantidad del saldo */
+  .dashboard-container .section-wrapper .section-form .card .saldo-display .saldo-amount {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    flex-direction: row !important;
+  }
+  
+  /* Selector específico para el botón */
+  .dashboard-container .section-wrapper .section-form .card .saldo-display .btn-add-saldo {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+  
+  /* Asegurar que el span del currency y amount estén centrados */
+  .saldo-amount .currency,
+  .saldo-amount .amount {
+    display: inline-block !important;
+    text-align: center !important;
+  }
+  
+  /* Forzar centrado general en contenedores */
+  .dashboard-container .section-wrapper:first-child .section-form {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+  
+  .dashboard-container .section-wrapper:first-child {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+}

@@ -1,0 +1,112 @@
+<main class="home">
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Consulta tu historial crediticio</h1>
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde, totam nobis corporis at aliquam recusandae sequi esse voluptatum aperiam dolorum quae officiis temporibus placeat minima. Et qui iusto neque ut?
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet esse non expedita sed est temporibus magni veniam a harum consequatur cupiditate maxime tempora laborum odit perspiciatis blanditiis eaque, nam quisquam!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Id et aliquam voluptatibus quas nostrum deserunt quasi culpa tempora cum. Voluptatum, culpa eaque provident architecto reiciendis pariatur autem? Laborum, architecto officia!
+      </p>
+      <div class="prueba-container">
+        <button (click)="goRegister()" class="btn-outline">Prueba Gratis</button>
+        <p class="hint">Prueba gratuita de una consulta a cédula</p>
+      </div>
+    </div>
+
+    <div class="hero-media">
+      <!-- Video local -->
+      <video controls src="assets/video-publicitario.mp4"></video>
+
+      <!-- O si prefieres YouTube:
+      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/…"></iframe>
+      -->
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section id="features" class="features-section">
+    <h2 class="features-title">NUESTRO SERVICIO, ¿QUÉ OFRECEMOS?</h2>
+    <div class="features-grid">
+      <div class="feature-card" *ngFor="let f of features">
+        <div class="card">
+          <div class="card-inner">
+            <!-- Front -->
+            <div class="card-front">
+              <img
+                [src]="'assets/icons/' + f.icon"
+                [alt]="f.name"
+                class="feature-icon"
+              />
+            </div>
+            <!-- Back -->
+            <div class="card-back">
+              <p>{{ f.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING SECTION -->
+   <section id="pricing" class="pricing-section">
+    <h2 class="section-title">PLANES</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Price</th>
+            <th>Velocidad de Respuesta</th>
+            <th>Capacidad de consulta</th>
+            <th>Gestión</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let plan of plans">
+            <td>{{ plan.priceRange }}</td>
+            <td>{{ plan.responseTime }}</td>
+            <td>{{ plan.capacity }}</td>
+            <td>
+              <button class="btn-select">Seleccionar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="more-btn">
+      <button (click)="selectPlan()" class="btn-more">Ver más</button>
+    </div>
+  </section>
+  <!-- REVIEWS SECTION -->
+  <section id="reviews" class="reviews-section">
+    <h2 class="section-title">RESEÑAS Y CALIFICACIONES</h2>
+    <div class="reviews-slider">
+      <div class="review-card" *ngFor="let r of reviews">
+        <p class="comment">“{{ r.comment }}”</p>
+        <div class="meta">
+          <span class="author">{{ r.author }}</span>
+          <span class="rating">
+            <ng-container *ngFor="let star of [].constructor(r.rating)">★</ng-container>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a routerLink="/terms">Términos y condiciones</a>
+      <a routerLink="/privacy">Políticas</a>
+      <a href="https://facebook.com" target="_blank">Facebook</a>
+      <!-- <a href="https://twitter.com"  target="_blank">Twitter</a>
+      <a href="https://instagram.com" target="_blank">Instagram</a> -->
+    </div>
+    <p class="copyright">
+      &copy; 2025 GAIA Consultores. Todos los derechos reservados.
+    </p>
+  </footer>
+
+</main>

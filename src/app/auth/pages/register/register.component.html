@@ -1,0 +1,64 @@
+<div class="login-wrapper">
+  <div class="login-left">
+    <div class="g-logo">
+      <!-- Puedes incluir el diseño de puntos del logo aquí -->
+    </div>
+  </div>
+
+  <div class="login-right">
+    <div class="login-box">
+      <h2>Crear una cuenta</h2>
+
+      <form [formGroup]="registerForm" (ngSubmit)="registrar()">
+        <label for="cedula">Cédula</label>
+        <div class="form-row">
+          <input id="cedula" formControlName="cedula" placeholder="Cédula">
+          <button type="button" (click)="validarCedula()" class="btn-login">Validar</button>
+        </div>
+
+        <label for="nombres">Nombres y Apellidos</label>
+        <input id="nombres" formControlName="nombres" placeholder="Nombres y Apellidos" readonly>
+
+        <label for="correo">Correo electrónico</label>
+        <input id="correo" formControlName="correo" placeholder="Correo electrónico">
+
+        <label for="contraseña">Contraseña</label>
+        <input id="contraseña" type="password" formControlName="contraseña" placeholder="Contraseña">
+
+        <label for="confirmar">Confirmar contraseña</label>
+        <input id="confirmar" type="password" formControlName="confirmar" placeholder="Confirmar contraseña">
+
+        <!-- Sección desplegable -->
+        <label (click)="mostrarEmpresa = !mostrarEmpresa" class="toggle-title">
+          Información de la empresa (opcional)
+          <span class="arrow" [class.open]="mostrarEmpresa">▼</span>
+        </label>
+
+        <div *ngIf="mostrarEmpresa" class="empresa-form">
+          <label for="nombre_empresa">Nombre Empresa</label>
+          <input id="nombre_empresa" formControlName="nombre_empresa" placeholder="Nombre Empresa">
+
+          <label for="ruc">RUC</label>
+          <input id="ruc" formControlName="ruc" placeholder="RUC">
+
+          <label for="correo_empresarial">Correo empresarial</label>
+          <input id="correo_empresarial" formControlName="correo_empresarial" placeholder="Correo empresarial">
+
+          <label for="cargo">Cargo</label>
+          <input id="cargo" formControlName="cargo" placeholder="Cargo">
+        </div>
+
+        <label class="checkbox-container">
+          <input type="checkbox" formControlName="terminos">
+          <span>Acepto los <a href="#">términos y condiciones</a></span>
+        </label>
+
+        <button type="submit" class="btn-login">Crear cuenta</button>
+      </form>
+
+      <p class="register-text">
+        ¿Ya tienes una cuenta? <a routerLink="/auth/login">Iniciar sesión</a>
+      </p>
+    </div>
+  </div>
+</div>

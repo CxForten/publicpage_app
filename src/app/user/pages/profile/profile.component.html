@@ -1,0 +1,169 @@
+<div class="settings-container">
+
+  <!-- ===== Sección: Perfil de Usuario ===== -->
+  <div class="section-wrapper">
+    <div class="section-info">
+      <h2>Perfil de Usuario</h2>
+      <p>Actualice la información de perfil y la dirección de correo electrónico de su cuenta.</p>
+    </div>
+    <div class="section-form">
+      <div class="card">
+        <form [formGroup]="profileForm" (ngSubmit)="onSaveProfile()">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" formControlName="email" type="email" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Teléfono de Contacto</label>
+            <input id="phone" formControlName="phone" type="text" />
+          </div>
+          <button type="submit" class="btn-save" [disabled]="profileForm.invalid">
+            Guardar Cambios
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <!-- ===== Sección: Actualizar Contraseña ===== -->
+  <div class="section-wrapper">
+    <div class="section-info">
+      <h2>Actualizar Contraseña</h2>
+      <p>
+        Asegúrese de que su cuenta esté usando una contraseña larga y alfanumérica
+        para mantenerse seguro.
+      </p>
+    </div>
+    <div class="section-form">
+      <div class="card">
+        <form [formGroup]="passwordForm" (ngSubmit)="onChangePassword()">
+          <div class="form-group">
+            <label for="currentPassword">Contraseña Actual</label>
+            <input id="currentPassword" formControlName="currentPassword" type="password" />
+          </div>
+          <div class="form-group">
+            <label for="newPassword">Nueva Contraseña</label>
+            <input id="newPassword" formControlName="newPassword" type="password" />
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirmar Contraseña</label>
+            <input
+              id="confirmPassword"
+              formControlName="confirmPassword"
+              type="password"
+            />
+            <div
+              class="error"
+              *ngIf="passwordForm.hasError('notMatching') && passwordForm.touched"
+            >
+              Las contraseñas no coinciden
+            </div>
+          </div>
+          <button type="submit" class="btn-save" [disabled]="passwordForm.invalid">
+            Guardar Cambios
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+    <!-- ===== Sección: Perfil de Usuario ===== -->
+  <div class="section-wrapper">
+    <div class="section-info">
+      <h2>Datos de empresa</h2>
+      <p>Actualice la información de perfil y la dirección de correo electrónico de su cuenta.</p>
+    </div>
+    <div class="section-form">
+      <div class="card">
+        <form [formGroup]="profileForm" (ngSubmit)="onSaveProfile()">
+          <div class="form-group">
+            <label for="email">Nombre de la empresa</label>
+            <input id="email" formControlName="email" type="email" />
+          </div>
+          <div class="form-group">
+            <label for="phone">RUC</label>
+            <input id="phone" formControlName="phone" type="text" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Correo empresarial</label>
+            <input id="phone" formControlName="phone" type="text" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Cargo</label>
+            <input id="phone" formControlName="phone" type="text" />
+          </div>
+          <button type="submit" class="btn-save" [disabled]="profileForm.invalid">
+            Guardar Cambios
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <!-- ===== Sección: Autenticación de dos factores ===== -->
+  <div class="section-wrapper">
+    <div class="section-info">
+      <h2>Autenticación de dos factores</h2>
+      <p>Agregue seguridad adicional a su cuenta mediante la autenticación de dos factores.</p>
+    </div>
+    <div class="section-form">
+      <div class="card">
+        <div class="card-body">
+          <p *ngIf="!is2FAEnabled">
+            No ha habilitado la autenticación de dos factores.
+            Cuando esté habilitada, se le pedirá una clave aleatoria durante el login.
+            Puede usar Google Authenticator para generarla.
+          </p>
+          <p *ngIf="is2FAEnabled">
+            La autenticación de dos factores está habilitada en su cuenta.
+          </p>
+          <button class="btn-save" (click)="toggle2FA()">
+            {{ is2FAEnabled ? 'Deshabilitar' : 'Habilitar' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <!-- ===== Sección: Sesiones del navegador ===== -->
+  <div class="section-wrapper">
+    <div class="section-info">
+      <h2>Sesiones del navegador</h2>
+      <p>
+        Administre y cierre sesión en sus sesiones activas en otros navegadores y dispositivos.
+      </p>
+    </div>
+    <div class="section-form">
+      <div class="card">
+        <div class="card-body sessions-list">
+          <div *ngFor="let s of sessions" class="session-item">
+            <svg class="icon-monitor" viewBox="0 0 24 24">
+              <path d="M3 4h18v12H3z"/>
+              <path d="M8 20h8"/>
+              <path d="M12 16v4"/>
+            </svg>
+            <div class="session-info">
+              <strong>{{ s.device }} – {{ s.browser }}</strong>
+              <span>
+                {{ s.ip }}
+                <em *ngIf="s.current">(Este dispositivo)</em>
+              </span>
+            </div>
+          </div>
+          <button class="btn-save" (click)="logoutOtherSessions()">
+            Desconectar en otras sesiones
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
