@@ -2,30 +2,20 @@
   <div class="login-left">
     <div class="logo-container">
       <div class="logo-wrapper">
-        <img src="assets/icons/gaia.png" alt="Gaia Logo" class="gaia-logo">
+        <img
+          src="assets/icons/gaia.png"
+          alt="Gaia Logo"
+          class="gaia-logo"
+        />
         <div class="logo-glow"></div>
       </div>
       <div class="floating-elements">
-        <div class="float-element element-1"></div>
-        <div class="float-element element-2"></div>
-        <div class="float-element element-3"></div>
-        <div class="float-element element-4"></div>
-        <div class="float-element element-5"></div>
-        <div class="float-element element-6"></div>
-        <div class="float-element element-7"></div>
-        <div class="float-element element-8"></div>
-        <div class="float-element element-9"></div>
-        <div class="float-element element-10"></div>
-        <div class="float-element element-11"></div>
-        <div class="float-element element-12"></div>
-        <div class="float-element element-13"></div>
-        <div class="float-element element-14"></div>
-        <div class="float-element element-15"></div>
-        <div class="float-element element-16"></div>
-        <div class="float-element element-17"></div>
-        <div class="float-element element-18"></div>
-        <div class="float-element element-19"></div>
-        <div class="float-element element-20"></div>
+        <ng-container *ngFor="let _ of floatElements; let idx = index">
+          <div
+            class="float-element"
+            [ngClass]="'element-' + (idx + 1)"
+          ></div>
+        </ng-container>
       </div>
     </div>
   </div>
@@ -35,54 +25,134 @@
       <h2>Crear una cuenta</h2>
 
       <form [formGroup]="registerForm" (ngSubmit)="registrar()">
-        <label for="cedula">Cédula</label>
-        <div class="form-row">
-          <input id="cedula" formControlName="cedula" placeholder="Cédula">
-          <button type="button" (click)="validarCedula()" class="btn-login">Validar</button>
+        <div class="form-group">
+          <label for="cedula">Cédula</label>
+          <div class="form-row">
+            <input
+              id="cedula"
+              formControlName="cedula"
+              placeholder="Cédula"
+            />
+            <button
+              type="button"
+              (click)="validarCedula()"
+              class="btn-login"
+            >
+              Validar
+            </button>
+          </div>
         </div>
 
-        <label for="nombres">Nombres y Apellidos</label>
-        <input id="nombres" formControlName="nombres" placeholder="Nombres y Apellidos" readonly>
-
-        <label for="correo">Correo electrónico</label>
-        <input id="correo" formControlName="correo" placeholder="Correo electrónico">
-
-        <label for="contraseña">Contraseña</label>
-        <input id="contraseña" type="password" formControlName="contraseña" placeholder="Contraseña">
-
-        <label for="confirmar">Confirmar contraseña</label>
-        <input id="confirmar" type="password" formControlName="confirmar" placeholder="Confirmar contraseña">
-
-        <!-- Sección desplegable -->
-        <label (click)="mostrarEmpresa = !mostrarEmpresa" class="toggle-title">
-          Información de la empresa (opcional)
-          <span class="arrow" [class.open]="mostrarEmpresa">▼</span>
-        </label>
-
-        <div *ngIf="mostrarEmpresa" class="empresa-form">
-          <label for="nombre_empresa">Nombre Empresa</label>
-          <input id="nombre_empresa" formControlName="nombre_empresa" placeholder="Nombre Empresa">
-
-          <label for="ruc">RUC</label>
-          <input id="ruc" formControlName="ruc" placeholder="RUC">
-
-          <label for="correo_empresarial">Correo empresarial</label>
-          <input id="correo_empresarial" formControlName="correo_empresarial" placeholder="Correo empresarial">
-
-          <label for="cargo">Cargo</label>
-          <input id="cargo" formControlName="cargo" placeholder="Cargo">
+        <div class="form-group">
+          <label for="nombres">Nombres</label>
+          <input
+            id="nombres"
+            formControlName="nombres"
+            placeholder="Nombres"
+            readonly
+          />
         </div>
 
-        <label class="checkbox-container">
-          <input type="checkbox" formControlName="terminos">
-          <span>Acepto los <a href="#">términos y condiciones</a></span>
-        </label>
+        <div class="form-group">
+          <label for="apellidos">Apellidos</label>
+          <input
+            id="apellidos"
+            formControlName="apellidos"
+            placeholder="Apellidos"
+            readonly
+          />
+        </div>
 
-        <button type="submit" class="btn-login">Crear cuenta</button>
+        <div class="form-group">
+          <label for="correo">Correo electrónico</label>
+          <input
+            id="correo"
+            formControlName="correo"
+            placeholder="Correo electrónico"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="contraseña">Contraseña</label>
+          <input
+            id="contraseña"
+            type="password"
+            formControlName="contraseña"
+            placeholder="Contraseña"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="confirmar">Confirmar contraseña</label>
+          <input
+            id="confirmar"
+            type="password"
+            formControlName="confirmar"
+            placeholder="Confirmar contraseña"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="toggle-title"
+            (click)="mostrarEmpresa = !mostrarEmpresa"
+          >
+            Información de la empresa (opcional)
+            <span class="arrow" [class.open]="mostrarEmpresa">▼</span>
+          </label>
+          <div *ngIf="mostrarEmpresa" class="empresa-form">
+            <div class="form-group">
+              <label for="nombre_empresa">Nombre Empresa</label>
+              <input
+                id="nombre_empresa"
+                formControlName="nombre_empresa"
+                placeholder="Nombre Empresa"
+              />
+            </div>
+            <div class="form-group">
+              <label for="ruc">RUC</label>
+              <input
+                id="ruc"
+                formControlName="ruc"
+                placeholder="RUC"
+              />
+            </div>
+            <div class="form-group">
+              <label for="correo_empresarial">Correo empresarial</label>
+              <input
+                id="correo_empresarial"
+                formControlName="correo_empresarial"
+                placeholder="Correo empresarial"
+              />
+            </div>
+            <div class="form-group">
+              <label for="cargo">Cargo</label>
+              <input
+                id="cargo"
+                formControlName="cargo"
+                placeholder="Cargo"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group checkbox-container">
+          <input type="checkbox" formControlName="terminos" />
+          <label>
+            <span>
+              Acepto los <a href="#">términos y condiciones</a>
+            </span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-login">
+          Crear cuenta
+        </button>
       </form>
 
       <p class="register-text">
-        ¿Ya tienes una cuenta? <a routerLink="/auth/login">Iniciar sesión</a>
+        ¿Ya tienes una cuenta?
+        <a routerLink="/auth/login">Iniciar sesión</a>
       </p>
     </div>
   </div>
