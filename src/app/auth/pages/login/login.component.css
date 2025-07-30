@@ -1,14 +1,9 @@
-
-:root {
-  --gaia-blue: #2f3b53;
-  --gaia-green: #9bc34a;
-}
 * {
   box-sizing: border-box;
+  margin:0;
 }
 
 body {
-  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -20,44 +15,666 @@ body {
 
 .login-left {
   flex: 1;
-  background-color: #2f3b53;
-  background-image: radial-gradient(#9bc34a 2px, transparent 2px);
-  background-size: 20px 20px;
+  background: linear-gradient(135deg, #2f3b53 0%, #1e2a3a 100%);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
-.g-logo {
-  display: grid;
-  grid-template-columns: repeat(6, 10px);
-  grid-template-rows: repeat(6, 10px);
-  gap: 10px;
+/* Contenedor principal del logo */
+.logo-container {
+  position: static;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
 }
 
-.dot {
-  width: 8px;
-  height: 8px;
-  background-color: #9bc34a;
+/* Wrapper del logo con animación */
+.logo-wrapper {
+  position: relative;
+  animation: logoFloat 6s ease-in-out infinite;
+}
+
+/* Logo principal */
+.gaia-logo {
+  width: 200px;
+  height: 200px;
+  filter: drop-shadow(0 0 20px rgba(155, 195, 74, 0.3));
+  transition: all 0.3s ease;
+  animation: logoGlow 4s ease-in-out infinite alternate;
+}
+
+/* Efecto de resplandor detrás del logo */
+.logo-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(155, 195, 74, 0.2) 0%, transparent 70%);
   border-radius: 50%;
-  transition: transform 0.3s ease;
+  animation: glowPulse 3s ease-in-out infinite;
+  z-index: -1;
 }
 
-.dot:hover {
-  transform: scale(1.5);
+/* Elementos de burbujas flotantes */
+.floating-elements {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-/* Posiciones de los puntos (como G) */
-.r1.c2 { grid-column: 2; grid-row: 1; }
-.r1.c3 { grid-column: 3; grid-row: 1; }
-.r1.c4 { grid-column: 4; grid-row: 1; }
-.r1.c5 { grid-column: 5; grid-row: 1; }
-.r2.c1 { grid-column: 1; grid-row: 2; }
-.r3.c1 { grid-column: 1; grid-row: 3; }
-.r4.c1 { grid-column: 1; grid-row: 4; }
-.r5.c1 { grid-column: 1; grid-row: 5; }
-.r5.c2 { grid-column: 2; grid-row: 5; }
-.r5.c3 { grid-column: 3; grid-row: 5; }
-.r5.c4 { grid-column: 4; grid-row: 5; }
-.r4.c4 { grid-column: 4; grid-row: 4; }
-.r3.c4 { grid-column: 4; grid-row: 3; }
+.float-element {
+  position: absolute;
+  background: rgba(155, 195, 74, 0.1);
+  border-radius: 50%;
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(155, 195, 74, 0.2);
+  box-shadow: 
+    0 0 10px rgba(155, 195, 74, 0.15),
+    inset 0 0 10px rgba(255, 255, 255, 0.05),
+    0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Burbujas que salen del logo hacia los bordes */
+.element-1 {
+  width: 25px;
+  height: 25px;
+  top: 20%;
+  left: 35%;
+  animation: bubbleFloat1 25s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.element-2 {
+  width: 20px;
+  height: 20px;
+  bottom: 25%;
+  left: 40%;
+  animation: bubbleFloat2 30s ease-in-out infinite;
+  animation-delay: -5s;
+}
+
+.element-3 {
+  width: 30px;
+  height: 30px;
+  top: 15%;
+  right: 35%;
+  animation: bubbleFloat3 35s ease-in-out infinite;
+  animation-delay: -10s;
+}
+
+.element-4 {
+  width: 22px;
+  height: 22px;
+  bottom: 20%;
+  right: 38%;
+  animation: bubbleFloat4 28s ease-in-out infinite;
+  animation-delay: -15s;
+}
+
+.element-5 {
+  width: 28px;
+  height: 28px;
+  top: 45%;
+  left: 30%;
+  animation: bubbleFloat5 32s ease-in-out infinite;
+  animation-delay: -20s;
+}
+
+/* Burbujas que se expanden del centro hacia afuera */
+.element-6 {
+  width: 18px;
+  height: 18px;
+  top: 30%;
+  right: 25%;
+  animation: bubbleFloat6 22s ease-in-out infinite;
+  animation-delay: -8s;
+}
+
+.element-7 {
+  width: 24px;
+  height: 24px;
+  bottom: 35%;
+  left: 28%;
+  animation: bubbleFloat7 26s ease-in-out infinite;
+  animation-delay: -12s;
+}
+
+.element-8 {
+  width: 20px;
+  height: 20px;
+  bottom: 10%;
+  left: 45%;
+  animation: bubbleFloat8 29s ease-in-out infinite;
+  animation-delay: -18s;
+}
+
+.element-9 {
+  width: 16px;
+  height: 16px;
+  top: 8%;
+  left: 42%;
+  animation: bubbleFloat9 24s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+.element-10 {
+  width: 26px;
+  height: 26px;
+  top: 12%;
+  left: 55%;
+  animation: bubbleFloat10 31s ease-in-out infinite;
+  animation-delay: -7s;
+}
+
+.element-11 {
+  width: 14px;
+  height: 14px;
+  top: 65%;
+  right: 30%;
+  animation: bubbleFloat11 27s ease-in-out infinite;
+  animation-delay: -14s;
+}
+
+.element-12 {
+  width: 22px;
+  height: 22px;
+  bottom: 32%;
+  right: 20%;
+  animation: bubbleFloat12 33s ease-in-out infinite;
+  animation-delay: -9s;
+}
+
+.element-13 {
+  width: 15px;
+  height: 15px;
+  top: 5%;
+  right: 40%;
+  animation: bubbleFloat13 21s ease-in-out infinite;
+  animation-delay: -16s;
+}
+
+.element-14 {
+  width: 19px;
+  height: 19px;
+  bottom: 8%;
+  right: 42%;
+  animation: bubbleFloat14 28s ease-in-out infinite;
+  animation-delay: -11s;
+}
+
+.element-15 {
+  width: 17px;
+  height: 17px;
+  bottom: 15%;
+  right: 48%;
+  animation: bubbleFloat15 26s ease-in-out infinite;
+  animation-delay: -19s;
+}
+
+.element-16 {
+  width: 12px;
+  height: 12px;
+  top: 25%;
+  left: 25%;
+  animation: bubbleFloat16 23s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+.element-17 {
+  width: 21px;
+  height: 21px;
+  top: 70%;
+  left: 32%;
+  animation: bubbleFloat17 27s ease-in-out infinite;
+  animation-delay: -13s;
+}
+
+.element-18 {
+  width: 23px;
+  height: 23px;
+  top: 18%;
+  right: 28%;
+  animation: bubbleFloat18 29s ease-in-out infinite;
+  animation-delay: -6s;
+}
+
+.element-19 {
+  width: 11px;
+  height: 11px;
+  bottom: 60%;
+  right: 35%;
+  animation: bubbleFloat19 25s ease-in-out infinite;
+  animation-delay: -17s;
+}
+
+.element-20 {
+  width: 16px;
+  height: 16px;
+  top: 55%;
+  right: 22%;
+  animation: bubbleFloat20 24s ease-in-out infinite;
+  animation-delay: -21s;
+}
+
+/* Animaciones */
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-15px) rotate(-1deg);
+  }
+}
+
+@keyframes logoGlow {
+  0% {
+    filter: drop-shadow(0 0 20px rgba(155, 195, 74, 0.3));
+  }
+  100% {
+    filter: drop-shadow(0 0 30px rgba(155, 195, 74, 0.6));
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.6;
+  }
+}
+
+@keyframes floatAround {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-100px) translateX(50px) rotate(180deg);
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-200px) translateX(100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Animaciones dinámicas para burbujas con menor opacidad */
+@keyframes bubbleFloat1 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.15;
+  }
+  25% {
+    transform: translateY(-20px) translateX(15px) scale(1.1);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translateY(-8px) translateX(-10px) scale(0.9);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translateY(-25px) translateX(8px) scale(1.05);
+    opacity: 0.2;
+  }
+}
+
+@keyframes bubbleFloat2 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
+    opacity: 0.18;
+  }
+  33% {
+    transform: translateY(18px) translateX(-15px) scale(1.15) rotate(120deg);
+    opacity: 0.28;
+  }
+  66% {
+    transform: translateY(-15px) translateX(18px) scale(0.85) rotate(240deg);
+    opacity: 0.32;
+  }
+}
+
+@keyframes bubbleFloat3 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.12;
+  }
+  20% {
+    transform: translateY(-12px) translateX(-8px) scale(1.2);
+    opacity: 0.22;
+  }
+  40% {
+    transform: translateY(8px) translateX(-18px) scale(0.9);
+    opacity: 0.28;
+  }
+  60% {
+    transform: translateY(-18px) translateX(12px) scale(1.1);
+    opacity: 0.25;
+  }
+  80% {
+    transform: translateY(4px) translateX(15px) scale(0.95);
+    opacity: 0.18;
+  }
+}
+
+@keyframes bubbleFloat4 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
+    opacity: 0.16;
+  }
+  25% {
+    transform: translateY(-15px) translateX(12px) scale(1.25) rotate(90deg);
+    opacity: 0.26;
+  }
+  50% {
+    transform: translateY(12px) translateX(-15px) scale(0.8) rotate(180deg);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translateY(-8px) translateX(-8px) scale(1.1) rotate(270deg);
+    opacity: 0.22;
+  }
+}
+
+@keyframes bubbleFloat5 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.14;
+  }
+  30% {
+    transform: translateY(15px) translateX(22px) scale(1.15);
+    opacity: 0.24;
+  }
+  60% {
+    transform: translateY(-22px) translateX(-12px) scale(0.9);
+    opacity: 0.28;
+  }
+  90% {
+    transform: translateY(8px) translateX(15px) scale(1.05);
+    opacity: 0.18;
+  }
+}
+
+@keyframes bubbleFloat6 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
+    opacity: 0.17;
+  }
+  50% {
+    transform: translateY(-25px) translateX(18px) scale(1.3) rotate(180deg);
+    opacity: 0.27;
+  }
+}
+
+@keyframes bubbleFloat7 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.25;
+  }
+  40% {
+    transform: translateY(25px) translateX(-30px) scale(1.2);
+    opacity: 0.7;
+  }
+  80% {
+    transform: translateY(-15px) translateX(20px) scale(0.85);
+    opacity: 0.5;
+  }
+}
+
+@keyframes bubbleFloat8 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-25px) translateX(-20px) scale(1.1) rotate(90deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(20px) translateX(15px) scale(0.9) rotate(180deg);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(-10px) translateX(25px) scale(1.15) rotate(270deg);
+    opacity: 0.4;
+  }
+}
+
+/* Nuevas animaciones para burbujas adicionales */
+@keyframes bubbleFloat9 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.35;
+  }
+  33% {
+    transform: translateY(-20px) translateX(30px) scale(1.2);
+    opacity: 0.7;
+  }
+  66% {
+    transform: translateY(25px) translateX(-15px) scale(0.85);
+    opacity: 0.6;
+  }
+}
+
+@keyframes bubbleFloat10 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
+    opacity: 0.4;
+  }
+  20% {
+    transform: translateY(15px) translateX(-25px) scale(1.15) rotate(72deg);
+    opacity: 0.8;
+  }
+  40% {
+    transform: translateY(-30px) translateX(20px) scale(0.9) rotate(144deg);
+    opacity: 0.9;
+  }
+  60% {
+    transform: translateY(10px) translateX(35px) scale(1.1) rotate(216deg);
+    opacity: 0.7;
+  }
+  80% {
+    transform: translateY(-15px) translateX(-10px) scale(0.95) rotate(288deg);
+    opacity: 0.5;
+  }
+}
+
+@keyframes bubbleFloat11 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-40px) translateX(-30px) scale(1.25);
+    opacity: 0.8;
+  }
+}
+
+@keyframes bubbleFloat12 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
+    opacity: 0.25;
+  }
+  25% {
+    transform: translateY(-35px) translateX(25px) scale(1.1) rotate(90deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(20px) translateX(-20px) scale(0.85) rotate(180deg);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translateY(-10px) translateX(30px) scale(1.05) rotate(270deg);
+    opacity: 0.4;
+  }
+}
+
+@keyframes bubbleFloat13 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.4;
+  }
+  40% {
+    transform: translateY(30px) translateX(-25px) scale(1.3);
+    opacity: 0.8;
+  }
+  80% {
+    transform: translateY(-20px) translateX(20px) scale(0.8);
+    opacity: 0.6;
+  }
+}
+
+@keyframes bubbleFloat14 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
+    opacity: 0.35;
+  }
+  30% {
+    transform: translateY(-25px) translateX(35px) scale(1.2) rotate(108deg);
+    opacity: 0.7;
+  }
+  60% {
+    transform: translateY(15px) translateX(-20px) scale(0.9) rotate(216deg);
+    opacity: 0.9;
+  }
+  90% {
+    transform: translateY(-10px) translateX(15px) scale(1.05) rotate(324deg);
+    opacity: 0.5;
+  }
+}
+
+@keyframes bubbleFloat15 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(20px) translateX(-30px) scale(1.15);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-35px) translateX(25px) scale(0.85);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(10px) translateX(-15px) scale(1.1);
+    opacity: 0.4;
+  }
+}
+
+/* Nuevas animaciones para burbujas de borde */
+@keyframes bubbleFloat16 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(-25px) translateX(20px) scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+@keyframes bubbleFloat17 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
+    opacity: 0.3;
+  }
+  33% {
+    transform: translateY(15px) translateX(25px) scale(1.1) rotate(120deg);
+    opacity: 0.6;
+  }
+  66% {
+    transform: translateY(-20px) translateX(-15px) scale(0.9) rotate(240deg);
+    opacity: 0.8;
+  }
+}
+
+@keyframes bubbleFloat18 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.4;
+  }
+  40% {
+    transform: translateY(-30px) translateX(-20px) scale(1.25);
+    opacity: 0.8;
+  }
+  80% {
+    transform: translateY(15px) translateX(30px) scale(0.85);
+    opacity: 0.5;
+  }
+}
+
+@keyframes bubbleFloat19 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
+    opacity: 0.25;
+  }
+  25% {
+    transform: translateY(20px) translateX(-25px) scale(1.3) rotate(90deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-15px) translateX(20px) scale(0.8) rotate(180deg);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translateY(25px) translateX(-10px) scale(1.1) rotate(270deg);
+    opacity: 0.4;
+  }
+}
+
+@keyframes bubbleFloat20 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.35;
+  }
+  30% {
+    transform: translateY(-20px) translateX(-35px) scale(1.15);
+    opacity: 0.7;
+  }
+  60% {
+    transform: translateY(25px) translateX(15px) scale(0.9);
+    opacity: 0.8;
+  }
+  90% {
+    transform: translateY(-10px) translateX(-20px) scale(1.05);
+    opacity: 0.5;
+  }
+}
+
+/* Hover effect en el logo */
+.logo-wrapper:hover .gaia-logo {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 40px rgba(155, 195, 74, 0.8));
+}
+
+.logo-wrapper:hover .logo-glow {
+  transform: translate(-50%, -50%) scale(1.3);
+  opacity: 0.8;
+}
 
 .login-right {
   flex: 1;
@@ -87,7 +704,7 @@ form {
 
 label {
   font-weight: 500;
-  color: var(--gaia-blue);
+  color: #475569;
 }
 
 input {
@@ -169,4 +786,70 @@ input:focus {
   .register-text {
     font-size: 0.95rem;
   }
+}
+
+/* Media query adicional para mostrar el logo en tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .gaia-logo {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .logo-glow {
+    width: 200px;
+    height: 200px;
+  }
+  
+  /* Ajustar burbujas para tablets */
+  .element-1 { width: 20px; height: 20px; }
+  .element-2 { width: 16px; height: 16px; }
+  .element-3 { width: 24px; height: 24px; }
+  .element-4 { width: 18px; height: 18px; }
+  .element-5 { width: 22px; height: 22px; }
+  .element-6 { width: 14px; height: 14px; }
+  .element-7 { width: 19px; height: 19px; }
+  .element-8 { width: 16px; height: 16px; }
+  .element-9 { width: 12px; height: 12px; }
+  .element-10 { width: 20px; height: 20px; }
+  .element-11 { width: 11px; height: 11px; }
+  .element-12 { width: 17px; height: 17px; }
+  .element-13 { width: 12px; height: 12px; }
+  .element-14 { width: 15px; height: 15px; }
+  .element-15 { width: 13px; height: 13px; }
+  .element-16 { width: 9px; height: 9px; }
+  .element-17 { width: 16px; height: 16px; }
+  .element-18 { width: 18px; height: 18px; }
+  .element-19 { width: 8px; height: 8px; }
+  .element-20 { width: 12px; height: 12px; }
+}
+
+/* Media queries para pantallas pequeñas */
+@media (max-width: 480px) {
+  .login-left {
+    display: none;
+  }
+}
+
+/* Media queries para pantallas muy grandes */
+@media (min-width: 1920px) {
+  .element-1 { width: 32px; height: 32px; }
+  .element-2 { width: 26px; height: 26px; }
+  .element-3 { width: 38px; height: 38px; }
+  .element-4 { width: 28px; height: 28px; }
+  .element-5 { width: 34px; height: 34px; }
+  .element-6 { width: 22px; height: 22px; }
+  .element-7 { width: 30px; height: 30px; }
+  .element-8 { width: 25px; height: 25px; }
+  .element-9 { width: 20px; height: 20px; }
+  .element-10 { width: 32px; height: 32px; }
+  .element-11 { width: 18px; height: 18px; }
+  .element-12 { width: 28px; height: 28px; }
+  .element-13 { width: 19px; height: 19px; }
+  .element-14 { width: 24px; height: 24px; }
+  .element-15 { width: 21px; height: 21px; }
+  .element-16 { width: 15px; height: 15px; }
+  .element-17 { width: 26px; height: 26px; }
+  .element-18 { width: 29px; height: 29px; }
+  .element-19 { width: 14px; height: 14px; }
+  .element-20 { width: 20px; height: 20px; }
 }
