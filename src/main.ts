@@ -14,11 +14,13 @@ import { SettingsComponent } from './app/user/pages/settings/settings.component'
 import { ProfileComponent } from './app/user/pages/profile/profile.component';
 import { NoAuthGuard } from './app/core/header/guards/noauth.guard';
 import { AuthGuard } from './app/core/header/guards/auth.guard';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 
 
 bootstrapApplication(AppComponent,{
  providers: [
+  provideAnimations(),
   provideHttpClient(),
   provideRouter(
     [

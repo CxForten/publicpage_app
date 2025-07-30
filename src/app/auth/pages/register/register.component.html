@@ -2,19 +2,12 @@
   <div class="login-left">
     <div class="logo-container">
       <div class="logo-wrapper">
-        <img
-          src="assets/icons/gaia.png"
-          alt="Gaia Logo"
-          class="gaia-logo"
-        />
+        <img src="assets/icons/gaia.png" alt="Gaia Logo" class="gaia-logo"/>
         <div class="logo-glow"></div>
       </div>
       <div class="floating-elements">
         <ng-container *ngFor="let _ of floatElements; let idx = index">
-          <div
-            class="float-element"
-            [ngClass]="'element-' + (idx + 1)"
-          ></div>
+          <div class="float-element" [ngClass]="'element-' + (idx + 1)"></div>
         </ng-container>
       </div>
     </div>
@@ -28,110 +21,57 @@
         <div class="form-group">
           <label for="cedula">Cédula</label>
           <div class="form-row">
-            <input
-              id="cedula"
-              formControlName="cedula"
-              placeholder="Cédula"
-            />
-            <button
-              type="button"
-              (click)="validarCedula()"
-              class="btn-login"
-            >
-              Validar
-            </button>
+            <input id="cedula" formControlName="cedula" placeholder="Cédula"/>
+            <button type="button" (click)="validarCedula()" class="btn-login">Validar</button>
           </div>
         </div>
 
         <div class="form-group">
           <label for="nombres">Nombres</label>
-          <input
-            id="nombres"
-            formControlName="nombres"
-            placeholder="Nombres"
-            readonly
-          />
+          <input id="nombres" formControlName="nombres" placeholder="Nombres" readonly/>
         </div>
 
         <div class="form-group">
           <label for="apellidos">Apellidos</label>
-          <input
-            id="apellidos"
-            formControlName="apellidos"
-            placeholder="Apellidos"
-            readonly
-          />
+          <input id="apellidos" formControlName="apellidos" placeholder="Apellidos" readonly/>
         </div>
 
         <div class="form-group">
           <label for="correo">Correo electrónico</label>
-          <input
-            id="correo"
-            formControlName="correo"
-            placeholder="Correo electrónico"
-          />
+          <input id="correo" formControlName="correo" placeholder="Correo electrónico"/>
         </div>
 
         <div class="form-group">
           <label for="contraseña">Contraseña</label>
-          <input
-            id="contraseña"
-            type="password"
-            formControlName="contraseña"
-            placeholder="Contraseña"
-          />
+          <input id="contraseña" type="password" formControlName="contraseña" placeholder="Contraseña"/>
         </div>
 
         <div class="form-group">
           <label for="confirmar">Confirmar contraseña</label>
-          <input
-            id="confirmar"
-            type="password"
-            formControlName="confirmar"
-            placeholder="Confirmar contraseña"
-          />
+          <input id="confirmar" type="password" formControlName="confirmar" placeholder="Confirmar contraseña"/>
         </div>
 
         <div class="form-group">
-          <label
-            class="toggle-title"
-            (click)="mostrarEmpresa = !mostrarEmpresa"
-          >
+          <label class="toggle-title" (click)="mostrarEmpresa = !mostrarEmpresa">
             Información de la empresa (opcional)
             <span class="arrow" [class.open]="mostrarEmpresa">▼</span>
           </label>
-          <div *ngIf="mostrarEmpresa" class="empresa-form">
-            <div class="form-group">
+          <div *ngIf="mostrarEmpresa" class="empresa-form" [@slideIn]>
+            <div class="form-group" style="--index: 0;">
               <label for="nombre_empresa">Nombre Empresa</label>
-              <input
-                id="nombre_empresa"
-                formControlName="nombre_empresa"
-                placeholder="Nombre Empresa"
-              />
+              <input id="nombre_empresa" formControlName="nombre_empresa" placeholder="Nombre Empresa"/>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="--index: 1;">
               <label for="ruc">RUC</label>
-              <input
-                id="ruc"
-                formControlName="ruc"
-                placeholder="RUC"
-              />
+              <input id="ruc" formControlName="ruc" placeholder="RUC"/>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="--index: 2;">
               <label for="correo_empresarial">Correo empresarial</label>
-              <input
-                id="correo_empresarial"
-                formControlName="correo_empresarial"
-                placeholder="Correo empresarial"
-              />
+              <input id="correo_empresarial" formControlName="correo_empresarial" placeholder="Correo empresarial"/>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="--index: 3;">
               <label for="cargo">Cargo</label>
-              <input
-                id="cargo"
-                formControlName="cargo"
-                placeholder="Cargo"
-              />
+              <input id="cargo" formControlName="cargo" placeholder="Cargo"/>
             </div>
           </div>
         </div>
@@ -140,20 +80,35 @@
           <input type="checkbox" formControlName="terminos" />
           <label>
             <span>
-              Acepto los <a href="#">términos y condiciones</a>
+              Acepto los <a (click)="openTermsModal()" style="cursor: pointer;">términos y condiciones</a>
             </span>
           </label>
         </div>
 
-        <button type="submit" class="btn-login">
-          Crear cuenta
-        </button>
+        <button type="submit" class="btn-login">Crear cuenta</button>
       </form>
 
       <p class="register-text">
         ¿Ya tienes una cuenta?
         <a routerLink="/auth/login">Iniciar sesión</a>
       </p>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal-overlay" *ngIf="showTermsModal" (click)="closeTermsModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Términos y Condiciones</h3>
+      <button class="close-btn" (click)="closeTermsModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="terms-content">
+        <h4>1. Aceptación de Términos</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum ipsum eligendi ab similique dolor adipisci, quia blanditiis natus veniam. Sed ad tempora repudiandae ea blanditiis fugiat recusandae reprehenderit, quia consequuntur?</p>
+
+      </div>
     </div>
   </div>
 </div>

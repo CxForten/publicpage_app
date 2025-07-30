@@ -2,19 +2,12 @@
   <div class="login-left">
     <div class="logo-container">
       <div class="logo-wrapper">
-        <img
-          src="assets/icons/gaia.png"
-          alt="Gaia Logo"
-          class="gaia-logo"
-        />
+        <img src="assets/icons/gaia.png" alt="Gaia Logo" class="gaia-logo"/>
         <div class="logo-glow"></div>
       </div>
       <div class="floating-elements">
         <ng-container *ngFor="let _ of floatElements; let idx = index">
-          <div
-            class="float-element"
-            [ngClass]="'element-' + (idx + 1)"
-          ></div>
+          <div class="float-element" [ngClass]="'element-' + (idx + 1)"></div>
         </ng-container>
       </div>
     </div>
@@ -27,37 +20,47 @@
       <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
         <div class="form-group">
           <label for="cedula">Cédula</label>
-          <input
-            id="cedula"
-            formControlName="cedula"
-            type="text"
-            placeholder="Ingrese su número de cédula"
-          />
+          <input id="cedula" formControlName="cedula" type="text" placeholder="Ingrese su número de cédula"/>
         </div>
 
         <div class="form-group">
           <label for="contraseña">Contraseña</label>
-          <input
-            id="contraseña"
-            formControlName="contraseña"
-            type="password"
-            placeholder="Ingrese su contraseña"
-          />
+          <input id="contraseña" formControlName="contraseña" type="password" placeholder="Ingrese su contraseña"/>
         </div>
 
-        <a
-          class="forgot-password"
-          routerLink="/auth/recover-password"
-          >¿Olvidé mi contraseña?</a
-        >
+        <a class="forgot-password" (click)="openRecoverModal()">¿Olvidé mi contraseña?</a>
 
         <button type="submit" class="btn-login">Continuar</button>
       </form>
 
-      <p class="register-text">
-        ¿Aún no tienes un usuario?
+      <p class="register-text">¿Aún no tienes un usuario?
         <a (click)="goRegister()">Crear una cuenta</a>
       </p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Recuperar Contraseña -->
+<div class="modal-overlay" *ngIf="showRecoverModal" (click)="closeRecoverModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Recuperar mi contraseña</h3>
+      <button class="modal-close" (click)="closeRecoverModal()">×</button>
+    </div>
+    
+    <div class="modal-body">
+      <p>Escriba su dirección de correo electrónico de registro para recibir instrucciones de restablecimiento de contraseña. Para ayuda escríbenos a ayuda&#64;soporteacc.com</p>
+      
+      <form [formGroup]="recoverForm" (ngSubmit)="sendRecoverEmail()">
+        <div class="form-group">
+          <label for="email">Su correo asignado</label>
+          <input id="email" formControlName="email" type="email" placeholder="Ingrese su correo electrónico" class="modal-input"/>
+        </div>
+      </form>
+    </div>
+    
+    <div class="modal-footer">
+      <button type="button" class="btn-modal-send" (click)="sendRecoverEmail()">Enviar credenciales</button>
     </div>
   </div>
 </div>
