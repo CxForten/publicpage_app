@@ -6,7 +6,6 @@ interface Plan {
   priceRange: string;
   speed: string;
   capacity: string;
-  isPopular?: boolean;
 }
 
 @Component({
@@ -35,8 +34,7 @@ export class PlansComponent {
       id: 'premium',
       priceRange: '$3 - $4.99',
       speed: '40 seg',
-      capacity: '40 cédulas',
-      isPopular: true
+      capacity: '40 cédulas'
     },
     {
       id: 'professional',

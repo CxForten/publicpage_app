@@ -25,10 +25,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let plan of plans; trackBy: trackByPlanId" [class.popular]="plan.isPopular">
+            <tr *ngFor="let plan of plans; trackBy: trackByPlanId">
               <td class="price-cell">
                 <span class="price-range">{{ plan.priceRange }}</span>
-                <span *ngIf="plan.isPopular" class="popular-badge">Popular</span>
               </td>
               <td class="speed-cell">{{ plan.speed }}</td>
               <td class="capacity-cell">{{ plan.capacity }}</td>
