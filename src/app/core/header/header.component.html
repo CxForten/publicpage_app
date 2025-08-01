@@ -11,19 +11,19 @@
   <!-- Menú navegable oculto en móvil hasta que se active -->
   <nav [class.active]="menuOpen">
     <ul>
-      <li><a routerLink="/">Inicio</a></li>
+      <li><a routerLink="/" [class.active]="isActiveRoute('/')">Inicio</a></li>
 
       <ng-container *ngIf="isLoggedIn$ | async; else anonLinks">
-        <li><a routerLink="/user">Panel de Control</a></li>
+        <li><a routerLink="/user" [class.active]="isActiveRoute('/user')">Panel de Control</a></li>
       </ng-container>
 
       <ng-template #anonLinks>
         </ng-template >
 
         <!-- <li><a routerLink="/">Sobre Nosotros</a></li> -->
-        <li><a routerLink="/plans">Planes</a></li>
+        <li><a routerLink="/plans" [class.active]="isActiveRoute('/plans')">Planes</a></li>
 
-      <li><a routerLink="/support">Contacto y Soporte</a></li>
+      <li><a routerLink="/support" [class.active]="isActiveRoute('/support')">Contacto y Soporte</a></li>
     </ul>
   </nav>
 

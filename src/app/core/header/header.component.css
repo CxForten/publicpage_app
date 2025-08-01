@@ -7,13 +7,17 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 0.5rem 1rem 0 0;
-  background: #ffffff;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   position: relative;
+  z-index: 100;
 }
 
 .main-header .logo {
-  margin-left: 20px;
+  margin-left: 0;
   margin-bottom: auto;
   align-items: center;
 }
@@ -21,13 +25,18 @@
 .main-header .logo a {
   display: inline-block;
   text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.main-header .logo a:hover {
+  transform: scale(1.05);
 }
 
 .main-header .logo a img {
-  height: 45px;
-  padding: -4rem;
+  height: 50px;
   width: auto;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
 }
 
 .main-header .menu-toggle {
@@ -36,10 +45,16 @@
   border: none;
   font-size: 1.8rem;
   cursor: pointer;
+  color: #2f3b53;
+  transition: color 0.3s ease;
+}
+
+.main-header .menu-toggle:hover {
+  color: #9bc34a;
 }
 
 .main-header nav {
-  margin-left: 5rem;
+  margin-left: 3rem;
 }
 
 .main-header nav ul {
@@ -57,11 +72,13 @@
 .main-header nav ul li a {
   position: relative;
   display: inline-block;
-  padding: 0.25rem 0;
+  padding: 0.75rem 1rem;
   text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  transition: color 0.3s ease-in-out;
+  color: #2f3b53;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .main-header nav ul li a::after {
@@ -69,18 +86,32 @@
   position: absolute;
   width: 0;
   height: 2px;
-  background: #333;
-  bottom: -4px;
-  left: 0;
-  transition: width 0.3s ease-in-out;
+  background: linear-gradient(90deg, #9bc34a, #85b538);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
 }
 
 .main-header nav ul li a:hover {
-  color: #000;
+  color: #9bc34a;
+  background: rgba(155, 195, 74, 0.05);
+  transform: translateY(-2px);
 }
 
 .main-header nav ul li a:hover::after {
   width: 100%;
+}
+
+/* Estilo para la página activa */
+.main-header nav ul li a.active {
+  color: #9bc34a;
+}
+
+.main-header nav ul li a.active::after {
+  width: 100%;
+  background: linear-gradient(90deg, #9bc34a, #85b538);
 }
 
 .main-header .actions {
@@ -94,57 +125,75 @@
 .main-header .actions .btn-primary,
 .main-header .actions .icon-btn,
 .main-header .actions .btn-logout {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 10px;
+  font-weight: 600;
 }
 
 .main-header .actions .btn-outline {
-  border: 1px solid #333;
+  border: 2px solid #9bc34a;
   background: transparent;
-  padding: 0.5rem 1rem;
+  color: #9bc34a;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .main-header .actions .btn-outline:hover {
-  background: #333;
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: #9bc34a;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(155, 195, 74, 0.3);
 }
 
 .main-header .actions .btn-primary {
-  background: #333;
+  background: linear-gradient(135deg, #2f3b53, #1e2a3a);
   color: #fff;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
   border: none;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 15px rgba(47, 59, 83, 0.3);
 }
 
 .main-header .actions .btn-primary:hover {
-  background: #555;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #1e2a3a, #0f1419);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(47, 59, 83, 0.4);
 }
 
 .main-header .actions .icon-btn {
   background: none;
   border: none;
   font-size: 1.25rem;
+  color: #2f3b53;
+  padding: 0.5rem;
+  border-radius: 8px;
 }
 
 .main-header .actions .icon-btn:hover {
   transform: scale(1.1);
+  background: rgba(155, 195, 74, 0.1);
+  color: #9bc34a;
 }
 
 .main-header .actions .btn-logout {
   background: none;
   border: none;
-  color: #333;
-  font-weight: 500;
+  color: #2f3b53;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
 .main-header .actions .btn-logout:hover {
-  color: #000;
-  transform: translateY(-1px);
+  color: #9bc34a;
+  background: rgba(155, 195, 74, 0.1);
+  transform: translateY(-2px);
 }
 
 /* ================================= */
@@ -170,13 +219,15 @@
     top: 100%;
     left: 0;
     width: 100%;
-    background: #ffffff;
-    border-top: 1px solid #e5e5e5;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(15px);
+    border-top: 1px solid rgba(226, 232, 240, 0.3);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     max-height: 0;
-    transition: max-height 0.4s ease, padding 0.3s ease;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
     z-index: 1000;
+    border-radius: 0 0 16px 16px;
   }
 
   .main-header nav.active {
@@ -192,7 +243,7 @@
   .main-header nav ul li {
     margin: 0;
     width: 100%;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.5);
   }
 
   .main-header nav ul li:last-child {
@@ -204,8 +255,10 @@
     width: 100%;
     display: block;
     font-size: 1rem;
-    color: #333;
+    color: #2f3b53;
     border-radius: 0;
+    margin: 0 1rem;
+    transition: all 0.3s ease;
   }
 
   .main-header nav ul li a::after {
@@ -213,8 +266,19 @@
   }
 
   .main-header nav ul li a:hover {
-    background: #f8f9fa;
-    color: #000;
+    background: rgba(155, 195, 74, 0.1);
+    color: #9bc34a;
+    transform: translateX(8px);
+  }
+
+  /* Estilo para página activa en móvil */
+  .main-header nav ul li a.active {
+    background: rgba(155, 195, 74, 0.15);
+    color: #9bc34a;
+    font-weight: 700;
+    border-left: 4px solid #9bc34a;
+    margin-left: 0;
+    padding-left: 1rem;
   }
 
   .main-header .actions {
@@ -238,12 +302,13 @@
   .main-header .actions .icon-btn {
     background: none;
     border: none;
-    padding: 0.5rem;
-    border-radius: 8px;
-    transition: all 0.2s ease;
+    padding: 0.75rem;
+    border-radius: 10px;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #2f3b53;
   }
 
   .main-header .actions .icon-btn svg {
@@ -252,7 +317,8 @@
   }
 
   .main-header .actions .icon-btn:hover {
-    background: #f3f4f6;
+    background: rgba(155, 195, 74, 0.1);
+    color: #9bc34a;
     transform: scale(1.05);
   }
 
@@ -262,9 +328,10 @@
 
   .main-header .actions .btn-outline,
   .main-header .actions .btn-primary {
-    padding: 0.5rem 0.75rem;
+    padding: 0.625rem 1rem;
     font-size: 0.875rem;
     white-space: nowrap;
+    font-weight: 600;
   }
 
   /* Ocultar "Prueba Gratis" en móvil */
