@@ -26,8 +26,8 @@
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 20%, rgba(155, 195, 74, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(47, 59, 83, 0.03) 0%, transparent 50%);
+    radial-gradient(circle at 20% 20%, rgba(149, 179, 89, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(47, 61, 77, 0.03) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
 }
@@ -61,10 +61,10 @@
   margin: 0;
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 700;
-  color: #2f3b53;
+  color: #2f3d4d;
   letter-spacing: -0.025em;
   margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, #2f3b53 0%, #1e2a3a 100%);
+  background: linear-gradient(135deg, #2f3d4d 0%, #3d5166 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -73,7 +73,7 @@
 .section-info p {
   margin: 0;
   font-size: 1.25rem;
-  color: #64748b;
+  color: #779cab;
   line-height: 1.7;
   font-weight: 400;
   max-width: 600px;
@@ -105,7 +105,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #9bc34a, #85b538, #9bc34a);
+  background: linear-gradient(90deg, #95b359, #87a452, #95b359);
   background-size: 200% 100%;
   animation: shimmer 3s ease-in-out infinite;
 }
@@ -118,7 +118,7 @@
 .card:hover {
   box-shadow: 
     0 20px 60px rgba(0, 0, 0, 0.12),
-    0 0 0 1px rgba(155, 195, 74, 0.2);
+    0 0 0 1px rgba(149, 179, 89, 0.2);
   transform: translateY(-4px);
 }
 
@@ -136,7 +136,7 @@
   margin: 0;
   font-size: 2rem;
   font-weight: 700;
-  color: #2f3b53;
+  color: #2f3d4d;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   position: relative;
@@ -150,7 +150,7 @@
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, #9bc34a, #85b538);
+  background: linear-gradient(90deg, #95b359, #87a452);
   border-radius: 2px;
 }
 
@@ -175,7 +175,7 @@
 }
 
 .plans-table thead tr {
-  background: linear-gradient(135deg, #2f3b53 0%, #1e2a3a 100%);
+  background: linear-gradient(135deg, #2f3d4d 0%, #3d5166 100%);
 }
 
 .plans-table th {
@@ -195,7 +195,7 @@
 }
 
 .plans-table tbody tr:hover {
-  background: rgba(155, 195, 74, 0.05);
+  background: rgba(149, 179, 89, 0.05);
 }
 
 .plans-table td {
@@ -215,17 +215,17 @@
 
 .price-range {
   font-size: 1.125rem;
-  color: #2f3b53;
+  color: #2f3d4d;
   display: block;
 }
 
 .speed-cell {
-  color: #64748b;
+  color: #779cab;
   font-weight: 500;
 }
 
 .capacity-cell {
-  color: #64748b;
+  color: #779cab;
   font-weight: 500;
 }
 
@@ -234,7 +234,7 @@
 }
 
 .btn-select {
-  background: linear-gradient(135deg, #9bc34a, #85b538);
+  background: linear-gradient(135deg, #95b359, #87a452);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -245,13 +245,13 @@
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  box-shadow: 0 4px 12px rgba(155, 195, 74, 0.3);
+  box-shadow: 0 4px 12px rgba(149, 179, 89, 0.3);
 }
 
 .btn-select:hover {
-  background: linear-gradient(135deg, #85b538, #6d9529);
+  background: linear-gradient(135deg, #87a452, #738e47);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(155, 195, 74, 0.4);
+  box-shadow: 0 8px 25px rgba(149, 179, 89, 0.4);
 }
 
 .btn-select:active {
@@ -273,8 +273,8 @@
   align-items: center;
   gap: 0.5rem;
   background: transparent;
-  color: #2f3b53;
-  border: 2px solid #2f3b53;
+  color: #2f3d4d;
+  border: 2px solid #2f3d4d;
   padding: 0.75rem 1.5rem;
   border-radius: 12px;
   font-weight: 600;
@@ -286,10 +286,10 @@
 }
 
 .btn-more:hover {
-  background: #2f3b53;
+  background: #2f3d4d;
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(47, 59, 83, 0.3);
+  box-shadow: 0 8px 25px rgba(47, 61, 77, 0.3);
 }
 
 .btn-more svg {
@@ -317,7 +317,7 @@
   margin: 0;
   font-size: 2rem;
   font-weight: 700;
-  color: #2f3b53;
+  color: #2f3d4d;
   position: relative;
 }
 
@@ -329,7 +329,7 @@
   transform: translateX(-50%);
   width: 80px;
   height: 3px;
-  background: linear-gradient(90deg, #9bc34a, #85b538);
+  background: linear-gradient(90deg, #95b359, #87a452);
   border-radius: 2px;
 }
 
@@ -344,41 +344,41 @@
   align-items: flex-start;
   gap: 1.25rem;
   padding: 1.5rem;
-  background: rgba(155, 195, 74, 0.05);
+  background: rgba(149, 179, 89, 0.05);
   border-radius: 16px;
-  border-left: 4px solid #9bc34a;
+  border-left: 4px solid #95b359;
   transition: all 0.3s ease;
 }
 
 .benefit-item:hover {
-  background: rgba(155, 195, 74, 0.1);
+  background: rgba(149, 179, 89, 0.1);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(155, 195, 74, 0.15);
+  box-shadow: 0 8px 25px rgba(149, 179, 89, 0.15);
 }
 
 .benefit-icon {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, #9bc34a, #85b538);
+  background: linear-gradient(135deg, #95b359, #87a452);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(155, 195, 74, 0.3);
+  box-shadow: 0 4px 12px rgba(149, 179, 89, 0.3);
 }
 
 .benefit-content h5 {
   margin: 0 0 0.5rem 0;
   font-size: 1.125rem;
   font-weight: 600;
-  color: #2f3b53;
+  color: #2f3d4d;
 }
 
 .benefit-content p {
   margin: 0;
-  color: #64748b;
+  color: #779cab;
   line-height: 1.5;
   font-size: 0.95rem;
 }
@@ -521,7 +521,7 @@
   margin: 0;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #1e293b;
+  color: #2f3d4d;
   letter-spacing: -0.025em;
 }
 
@@ -553,7 +553,7 @@
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  background: linear-gradient(135deg, #2f3d4d 0%, #3d5166 100%);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -570,13 +570,13 @@
   margin: 0 0 0.5rem 0;
   font-size: 1.125rem;
   font-weight: 600;
-  color: #1e293b;
+  color: #2f3d4d;
 }
 
 .benefit-content p {
   margin: 0;
   font-size: 0.925rem;
-  color: #64748b;
+  color: #779cab;
   line-height: 1.5;
 }
 

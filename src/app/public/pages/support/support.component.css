@@ -4,7 +4,7 @@
 
 .support-wrapper {
   min-height: 100vh;
-  background: #f8fafc;
+  background: #f8fafc; /* Gris oscuro */
   padding: 2rem 0;
   display: flex;
   align-items: center;
@@ -38,7 +38,7 @@
   display: inline-block;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #9bc34a;
+  color: #95b359; /* Verde claro */
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 1rem;
@@ -53,20 +53,20 @@
   transform: translateY(-50%);
   width: 1.5rem;
   height: 2px;
-  background: #9bc34a;
+  background: #95b359; /* Verde claro */
 }
 
 .contact-header h1 {
   font-size: clamp(2rem, 4vw, 2.75rem);
   font-weight: 700;
-  color: #1e293b;
+  color: #2f3d4d; /* Azul marino oscuro */
   line-height: 1.2;
   margin-bottom: 1rem;
 }
 
 .contact-subtitle {
   font-size: 1.125rem;
-  color: #64748b;
+  color: #3d5166; /* Azul medio */
   font-weight: 400;
 }
 
@@ -146,12 +146,12 @@
 }
 
 .phone-icon {
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: linear-gradient(135deg, #10b981, #059669); /* Verde claro a azul claro */
   color: white;
 }
 
 .email-icon {
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  background: linear-gradient(135deg, #3d5166, #2f3d4d); /* Azul medio a azul marino oscuro */
   color: white;
 }
 
@@ -163,13 +163,13 @@
 .contact-method h4 {
   font-size: 1rem;
   font-weight: 600;
-  color: #1e293b;
+  color: #2f3d4d; /* Azul marino oscuro */
   margin-bottom: 0.5rem;
 }
 
 .contact-method p {
   font-size: 0.875rem;
-  color: #64748b;
+  color: #3d5166; /* Azul medio */
   margin: 0;
   line-height: 1.4;
 }
@@ -198,14 +198,14 @@
 .form-group label {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #374151;
+  color: #2f3d4d; /* Azul marino oscuro */
   margin-bottom: 0.5rem;
 }
 
 .form-group input,
 .form-group textarea {
   padding: 0.75rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid #779cab; /* Azul claro */
   border-radius: 8px;
   font-size: 0.875rem;
   transition: all 0.2s ease;
@@ -217,13 +217,13 @@
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #9bc34a;
-  box-shadow: 0 0 0 3px rgba(155, 195, 74, 0.1);
+  border-color: #95b359; /* Verde claro */
+  box-shadow: 0 0 0 3px rgba(149, 179, 89, 0.1);
 }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: #9ca3af;
+  color: #779cab; /* Azul claro */
 }
 
 .form-group textarea {
@@ -240,7 +240,7 @@
 }
 
 .btn-send {
-  background: linear-gradient(135deg, #9bc34a, #85b538);
+  background: linear-gradient(135deg, #95b359, #85b538); /* Verde claro a azul claro */
   color: white;
   border: none;
   padding: 0.875rem 2rem;
@@ -254,9 +254,9 @@
 }
 
 .btn-send:hover:not(:disabled) {
-  background: linear-gradient(135deg, #85b538, #6d9529);
+  background: linear-gradient(135deg, #85b538, #6d9529); /* Azul claro a azul medio */
   transform: translateY(-1px);
-  box-shadow: 0 8px 25px rgba(155, 195, 74, 0.3);
+  box-shadow: 0 8px 25px rgba(149, 179, 89, 0.3);
 }
 
 .btn-send:disabled {
@@ -379,6 +379,6 @@
 
 .form-group input.ng-valid.ng-touched,
 .form-group textarea.ng-valid.ng-touched {
-  border-color: #10b981;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  border-color: #95b359; /* Verde claro */
+  box-shadow: 0 0 0 3px rgba(149, 179, 89, 0.1);
 }
