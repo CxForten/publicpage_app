@@ -1,1 +1,201 @@
-<p>payment works!</p>
+<div class="payment-container">
+  <!-- Header Section -->
+  <div class="section-wrapper">
+
+      <h2>Métodos de Pago</h2>
+  </div>
+
+  <!-- Payment Form Section -->
+  <div class="payment-section">
+    <div class="payment-grid">
+      <!-- Formulario de tarjeta -->
+      <div class="card payment-form-card">
+        <div class="form-section">
+          <h3>DATOS DE LA TARJETA</h3>
+          <p class="form-subtitle">Seleccionar método de pago</p>
+          
+          <form class="payment-form" (ngSubmit)="onSubmit()">
+            <!-- Selector de tipo de tarjeta -->
+            <div class="form-group">
+              <label for="cardType">Tipo de tarjeta</label>
+              <select 
+                id="cardType" 
+                name="cardType" 
+                class="form-control"
+                [(ngModel)]="cardData.cardType">
+                <option value="visa">Visa</option>
+                <option value="mastercard">Mastercard</option>
+                <option value="amex">American Express</option>
+                <option value="discover">Discover</option>
+              </select>
+            </div>
+
+            <!-- Número de tarjeta -->
+            <div class="form-group">
+              <label for="cardNumber">Número de tarjeta</label>
+              <input 
+                type="text" 
+                id="cardNumber" 
+                name="cardNumber" 
+                class="form-control" 
+                placeholder="●●●● ●●●● ●●●● ××××"
+                maxlength="19"
+                (input)="formatCardNumber($event)"
+                required>
+            </div>
+
+            <!-- Fecha de caducidad y CVC -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="expiryDate">Fecha de caducidad</label>
+                <input 
+                  type="text" 
+                  id="expiryDate" 
+                  name="expiryDate" 
+                  class="form-control" 
+                  placeholder="MM/AA"
+                  maxlength="5"
+                  (input)="formatExpiryDate($event)"
+                  required>
+              </div>
+              <div class="form-group">
+                <label for="cvv">CVC</label>
+                <input 
+                  type="text" 
+                  id="cvv" 
+                  name="cvv" 
+                  class="form-control" 
+                  placeholder="●●●"
+                  maxlength="4"
+                  (input)="formatCVV($event)"
+                  required>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Información de facturación -->
+        <div class="billing-section">
+          <h3>INFORMACIÓN DE FACTURACIÓN</h3>
+          
+          <form class="billing-form">
+            <!-- Nombres y Apellidos -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">Nombres</label>
+                <input 
+                  type="text" 
+                  id="firstName" 
+                  name="firstName" 
+                  class="form-control"
+                  [(ngModel)]="billingData.firstName"
+                  required>
+              </div>
+              <div class="form-group">
+                <label for="lastName">Apellidos</label>
+                <input 
+                  type="text" 
+                  id="lastName" 
+                  name="lastName" 
+                  class="form-control"
+                  [(ngModel)]="billingData.lastName"
+                  required>
+              </div>
+            </div>
+
+            <!-- Dirección y Localidad -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="address">Dirección</label>
+                <input 
+                  type="text" 
+                  id="address" 
+                  name="address" 
+                  class="form-control"
+                  [(ngModel)]="billingData.address"
+                  required>
+              </div>
+              <div class="form-group">
+                <label for="city">Localidad</label>
+                <input 
+                  type="text" 
+                  id="city" 
+                  name="city" 
+                  class="form-control"
+                  [(ngModel)]="billingData.city"
+                  required>
+              </div>
+            </div>
+
+            <!-- Teléfono -->
+            <div class="form-group">
+              <label for="phone">Teléfono</label>
+              <input 
+                type="tel" 
+                id="phone" 
+                name="phone" 
+                class="form-control"
+                [(ngModel)]="billingData.phone"
+                required>
+            </div>
+
+            <!-- Checkbox para guardar información -->
+            <div class="form-checkbox">
+              <input 
+                type="checkbox" 
+                id="saveInfo" 
+                name="saveInfo"
+                [(ngModel)]="billingData.saveInfo">
+              <label for="saveInfo">Guardar mi información para futuras compras</label>
+            </div>
+
+            <!-- Botón de pago -->
+            <button type="button" class="btn-pay" (click)="onSubmit()">
+              Pagar
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Métodos de pago aceptados -->
+      <div class="payment-methods-card">
+        <div class="card">
+          <h3>MÉTODO DE PAGO</h3>
+          <p class="methods-subtitle">Aceptamos los siguientes métodos de pago</p>
+          
+          <div class="payment-icons">
+            <div class="payment-icon visa">
+              <svg viewBox="0 0 48 32" fill="none">
+                <rect width="48" height="32" rx="4" fill="#1A1F71"/>
+                <path d="M18.5 24h-3.5l2.2-13h3.5l-2.2 13zm12.9-13c-.7 0-1.2.4-1.2.9 0 .4.3.7.9.9.6.3 1 .5 1 .9 0 .6-.8.9-1.5.9-.7 0-1.3-.1-1.9-.4l-.3 1.7c.6.3 1.4.4 2.3.4 2.4 0 4-1.2 4-3.1 0-2.4-3.3-2.5-3.3-3.6 0-.3.3-.6 1-.6.5 0 1 .1 1.4.3l.3-1.6c-.5-.2-1.1-.3-1.7-.3zm7.9 0c-.9 0-1.6.5-1.9 1.3l-2.7 6.4h2.5l.5-1.4h3.1l.3 1.4h2.2l-1.9-7.7h-2.1zm.4 3.1l.7 2.5h-2l1.3-2.5zm-10.2-2.4l-2.5 6.5-.3-1.5-.9-4.6c-.2-.8-.8-1.1-1.5-1.1h-4.2l-.1.3c.9.2 1.9.5 2.5.9.4.2.5.4.6.8l2.3 8.8h2.5l3.8-8.8h-2.2v-.3z" fill="white"/>
+              </svg>
+            </div>
+            
+            <div class="payment-icon amex">
+              <svg viewBox="0 0 48 32" fill="none">
+                <rect width="48" height="32" rx="4" fill="#2E77BC"/>
+                <path d="M14.5 16l-2.2-5.3h-3.8l3.6 8.6h4.8l3.6-8.6h-3.8l-2.2 5.3zm10.1-5.3h-3.5v8.6h3.5v-8.6zm8.9 0h-5.4v8.6h5.4c2.4 0 4.3-1.9 4.3-4.3s-1.9-4.3-4.3-4.3zm1.8 4.3c0 1-.8 1.8-1.8 1.8h-1.9v-3.6h1.9c1 0 1.8.8 1.8 1.8z" fill="white"/>
+              </svg>
+            </div>
+            
+            <div class="payment-icon mastercard">
+              <svg viewBox="0 0 48 32" fill="none">
+                <rect width="48" height="32" rx="4" fill="#EB001B"/>
+                <circle cx="19" cy="16" r="10" fill="#EB001B"/>
+                <circle cx="29" cy="16" r="10" fill="#FF5F00"/>
+                <path d="M24 8c-1.7 1.4-2.8 3.6-2.8 6s1.1 4.6 2.8 6c1.7-1.4 2.8-3.6 2.8-6s-1.1-4.6-2.8-6z" fill="#FF5F00"/>
+              </svg>
+            </div>
+            
+            <div class="payment-icon discover">
+              <svg viewBox="0 0 48 32" fill="none">
+                <rect width="48" height="32" rx="4" fill="#FF6000"/>
+                <path d="M12 12h4v8h-4v-8zm6 0h2l2 6 2-6h2l-3 8h-2l-3-8zm8 0h4c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2h-4v-8zm2 2v4h2v-4h-2z" fill="white"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

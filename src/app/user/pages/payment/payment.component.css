@@ -1,0 +1,415 @@
+/* ============================== */
+/* PAYMENT CONTAINER              */
+/* ============================== */
+
+.payment-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Efecto de fondo sutil */
+.payment-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(149, 179, 89, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(47, 61, 77, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.payment-container > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================== */
+/* SECTION WRAPPER               */
+/* ============================== */
+
+.section-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+}
+
+.section-info {
+  text-align: center;
+  max-width: 800px;
+}
+
+.section-info h2 {
+  margin: 0;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: #2f3d4d;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #2f3d4d 0%, #3d5166 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-info p {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #779cab;
+  line-height: 1.7;
+  font-weight: 400;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ============================== */
+/* PAYMENT SECTION               */
+/* ============================== */
+
+.payment-section {
+  width: 100%;
+}
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* ============================== */
+/* CARD STYLES                   */
+/* ============================== */
+
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+  padding: 2.5rem;
+  border: 1px solid rgba(226, 232, 240, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(149, 179, 89, 0.02) 0%, 
+    transparent 25%,
+    transparent 75%,
+    rgba(47, 61, 77, 0.02) 100%);
+  pointer-events: none;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+/* ============================== */
+/* PAYMENT FORM CARD             */
+/* ============================== */
+
+.payment-form-card {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.form-section h3,
+.billing-section h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2f3d4d;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-subtitle {
+  color: #779cab;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+/* ============================== */
+/* FORM STYLES                   */
+/* ============================== */
+
+.payment-form,
+.billing-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2f3d4d;
+  margin-bottom: 0.25rem;
+}
+
+.form-control {
+  padding: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #ffffff;
+  color: #2f3d4d;
+  font-family: inherit;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #95b359;
+  box-shadow: 0 0 0 3px rgba(149, 179, 89, 0.1);
+  transform: translateY(-1px);
+}
+
+.form-control::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+/* Select específico */
+select.form-control {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 1rem center;
+  background-repeat: no-repeat;
+  background-size: 1rem;
+  padding-right: 3rem;
+  appearance: none;
+}
+
+/* ============================== */
+/* CHECKBOX STYLES               */
+/* ============================== */
+
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.form-checkbox input[type="checkbox"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  accent-color: #95b359;
+  cursor: pointer;
+}
+
+.form-checkbox label {
+  font-size: 0.95rem;
+  color: #3d5166;
+  cursor: pointer;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* ============================== */
+/* PAY BUTTON                    */
+/* ============================== */
+
+.btn-pay {
+  background: linear-gradient(135deg, #95b359 0%, #7a9347 100%);
+  color: white;
+  border: none;
+  padding: 1.25rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 1rem;
+  box-shadow: 0 4px 20px rgba(149, 179, 89, 0.3);
+}
+
+.btn-pay:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(149, 179, 89, 0.4);
+  background: linear-gradient(135deg, #7a9347 0%, #6b8139 100%);
+}
+
+.btn-pay:active {
+  transform: translateY(0);
+}
+
+/* ============================== */
+/* PAYMENT METHODS CARD          */
+/* ============================== */
+
+.payment-methods-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2f3d4d;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.methods-subtitle {
+  color: #779cab;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.payment-icons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.payment-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.payment-icon:hover {
+  border-color: #95b359;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(149, 179, 89, 0.1);
+}
+
+.payment-icon svg {
+  width: 48px;
+  height: 32px;
+}
+
+/* ============================== */
+/* RESPONSIVE DESIGN             */
+/* ============================== */
+
+@media (max-width: 1024px) {
+  .payment-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .payment-container {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .payment-container {
+    padding: 1rem;
+    gap: 2rem;
+  }
+  
+  .section-info h2 {
+    font-size: 2rem;
+  }
+  
+  .section-info p {
+    font-size: 1.1rem;
+  }
+  
+  .card {
+    padding: 1.5rem;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .payment-icons {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .payment-icon {
+    padding: 0.75rem;
+  }
+  
+  .payment-icon svg {
+    width: 40px;
+    height: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .payment-container {
+    padding: 0.75rem;
+  }
+  
+  .section-info h2 {
+    font-size: 1.75rem;
+  }
+  
+  .card {
+    padding: 1rem;
+  }
+  
+  .payment-form-card {
+    gap: 2rem;
+  }
+  
+  .form-control {
+    padding: 0.75rem;
+  }
+  
+  .btn-pay {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .payment-icons {
+    grid-template-columns: 1fr;
+  }
+}
