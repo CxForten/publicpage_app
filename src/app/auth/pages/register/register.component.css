@@ -1211,4 +1211,125 @@ input:focus {
 .modal-body::-webkit-scrollbar-thumb:hover {
   background: #85b538;
 }
+
+/* ============================== */
+/* MENSAJES DE ERROR Y ÉXITO     */
+/* ============================== */
+
+.message-container {
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.message {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease-out;
+}
+
+.message-error {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  border: 1px solid #fca5a5;
+  color: #dc2626;
+}
+
+.message-success {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  border: 1px solid #86efac;
+  color: #16a34a;
+}
+
+.message-icon {
+  font-size: 1.25rem;
+  margin-right: 0.75rem;
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+}
+
+.message-content {
+  flex: 1;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.message-content div {
+  margin-bottom: 0.25rem;
+}
+
+.message-content div:last-child {
+  margin-bottom: 0;
+}
+
+.message-close {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 0.75rem;
+  margin-top: -0.125rem;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.message-close:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.message-error .message-close:hover {
+  background-color: rgba(185, 28, 28, 0.1);
+}
+
+.message-success .message-close:hover {
+  background-color: rgba(22, 163, 74, 0.1);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive para mensajes */
+@media (max-width: 768px) {
+  .message {
+    padding: 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  .message-icon {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+  }
+  
+  .message-content {
+    font-size: 0.8rem;
+  }
+  
+  .message-close {
+    font-size: 1rem;
+    width: 20px;
+    height: 20px;
+  }
+}
 }

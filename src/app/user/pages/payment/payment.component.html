@@ -1,7 +1,18 @@
 <div class="payment-container">
+  <!-- Plan Selected Section -->
+  <div class="section-wrapper" *ngIf="selectedPlan">
+    <div class="selected-plan-card">
+      <h3>Plan Seleccionado</h3>
+      <div class="plan-details">
+        <p><strong>Precio:</strong> {{ selectedPlan.priceRange }}</p>
+        <p><strong>Velocidad de Respuesta:</strong> {{ selectedPlan.responseTime }}</p>
+        <p><strong>Capacidad de Consulta:</strong> {{ selectedPlan.capacity }}</p>
+      </div>
+    </div>
+  </div>
+
   <!-- Header Section -->
   <div class="section-wrapper">
-
       <h2>Métodos de Pago</h2>
   </div>
 

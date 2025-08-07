@@ -30,6 +30,12 @@ export class AuthService {
     );
   }
 
+  // Método para establecer el estado de autenticación manualmente (útil para auto-login después del registro)
+  setAuthenticationState(token: string): void {
+    localStorage.setItem('token', token);
+    this.loggedIn.next(true);
+  }
+
   logout(): Observable<void> {
     // Limpiar inmediatamente el token y estado
     localStorage.removeItem('token');

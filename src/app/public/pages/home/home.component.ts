@@ -2,6 +2,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../core/header/services/auth.service';
+import { PlanSelectionService } from '../../../core/services/plan-selection.service';
+import { Observable } from 'rxjs';
 
 // Interfaces para estructurar datos
 interface Feature {
@@ -33,16 +36,43 @@ interface Review {
 })
 export class HomeComponent {
 
-  constructor(private router: Router) {}
+  // Observable para el estado de autenticación
+  isLoggedIn$: Observable<boolean>;
+
+  constructor(private router: Router, private authService: AuthService, private planSelectionService: PlanSelectionService) {
+    this.isLoggedIn$ = this.authService.isLoggedIn$;
+  }
 
   // Funcionalidad: redirige al formulario de registro
   goRegister(): void {
     this.router.navigate(['auth/register']);
   }
 
+  // Funcionalidad: redirige al panel de control (para usuarios logueados)
+  goDashboard(): void {
+    this.router.navigate(['/user']);
+  }
+
   // Funcionalidad: redirige a la vista de planes
   selectPlan(): void {
     this.router.navigate(['/plans']);
+  }
+
+  // Funcionalidad: selecciona un plan específico y redirige según el estado de autenticación
+  selectSpecificPlan(plan: Plan): void {
+    // Guardar el plan seleccionado
+    this.planSelectionService.setSelectedPlan(plan);
+    
+    // Verificar si el usuario está logueado
+    this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+      if (isLoggedIn) {
+        // Si está logueado, ir directamente a payment
+        this.router.navigate(['/user/payment']);
+      } else {
+        // Si no está logueado, ir a registro
+        this.router.navigate(['/auth/register']);
+      }
+    }).unsubscribe(); // Desuscribirse inmediatamente para evitar memory leaks
   }
 
   // Sección de características del sistema

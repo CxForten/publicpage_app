@@ -1,0 +1,7 @@
+{
+  "ciudadanos": [
+    { "cedula": "0102030405", "nombres": "Carlos", "apellidos": "Mendoza", "fechaNacimiento": "1985-05-20", "lugarNacimiento": "Quito" },
+    { "cedula": "0203040507", "nombres": "María",  "apellidos": "Pérez",    "fechaNacimiento": "1990-07-15", "lugarNacimiento": "Guayaquil" },
+    { "cedula": "0305060709", "nombres": "Jorge",  "apellidos": "Ramírez",  "fechaNacimiento": "1978-11-02", "lugarNacimiento": "Cuenca" }
+  ]
+}

@@ -17,23 +17,39 @@
     <div class="login-box">
       <h2>Crear una cuenta</h2>
 
+      <!-- Mensajes de error y éxito -->
+      <div *ngIf="mostrandoMensaje" class="message-container">
+        <div *ngIf="mensajeError" class="message message-error">
+          <div class="message-icon">⚠️</div>
+          <div class="message-content">
+            <div *ngFor="let linea of getMensajeErrorLineas()">{{ linea }}</div>
+          </div>
+          <button type="button" class="message-close" (click)="ocultarMensajes()">×</button>
+        </div>
+        
+        <div *ngIf="mensajeExito" class="message message-success">
+          <div class="message-icon">✅</div>
+          <div class="message-content">
+            <span>{{ mensajeExito }}</span>
+          </div>
+          <button type="button" class="message-close" (click)="ocultarMensajes()">×</button>
+        </div>
+      </div>
+
       <form [formGroup]="registerForm" (ngSubmit)="registrar()">
         <div class="form-group">
           <label for="cedula">Cédula</label>
           <div class="form-row">
             <input id="cedula" formControlName="cedula" placeholder="Cédula"/>
-            <button type="button" (click)="validarCedula()" class="btn-login">Validar</button>
+            <button type="button" (click)="validarCedula()" class="btn-login" [disabled]="validandoCedula">
+              {{ validandoCedula ? 'Validando...' : 'Validar' }}
+            </button>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="nombres">Nombres</label>
-          <input id="nombres" formControlName="nombres" placeholder="Nombres" readonly/>
-        </div>
-
-        <div class="form-group">
-          <label for="apellidos">Apellidos</label>
-          <input id="apellidos" formControlName="apellidos" placeholder="Apellidos" readonly/>
+          <label for="nombres_completos">Nombres y Apellidos</label>
+          <input id="nombres_completos" formControlName="nombres_completos" placeholder="Nombres y Apellidos" readonly/>
         </div>
 
         <div class="form-group">

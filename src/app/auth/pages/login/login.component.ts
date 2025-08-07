@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../../core/header/services/auth.service';
+import { PlanSelectionService } from '../../../core/services/plan-selection.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private planSelectionService: PlanSelectionService
   ) {
     this.loginForm = this.fb.group({
       cedula:    ['', [Validators.required]],
@@ -46,7 +48,14 @@ export class LoginComponent {
     }
 
     this.authService.login(this.loginForm.value).subscribe({
-      next: () => this.router.navigate(['/user']),
+      next: () => {
+        // Verificar si hay un plan seleccionado
+        if (this.planSelectionService.hasSelectedPlan()) {
+          this.router.navigate(['/user/payment']);
+        } else {
+          this.router.navigate(['/user']);
+        }
+      },
       error: err => {
         this.errorMessage = err.error?.message ?? 'Error al iniciar sesión';
         console.error(err);

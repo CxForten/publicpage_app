@@ -1,6 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { PlanSelectionService } from '../../../core/services/plan-selection.service';
+import { Router } from '@angular/router';
+
+interface Plan {
+  priceRange: string;
+  responseTime: string;
+  capacity: string;
+}
 
 @Component({
   selector: 'app-payment',
@@ -9,7 +17,10 @@ import { CommonModule } from '@angular/common';
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.css'
 })
-export class PaymentComponent {
+export class PaymentComponent implements OnInit {
+  
+  // Plan seleccionado
+  selectedPlan: Plan | null = null;
   
   // Datos del formulario de tarjeta
   cardData = {
@@ -29,7 +40,18 @@ export class PaymentComponent {
     saveInfo: false
   };
 
-  constructor() {}
+  constructor(private planSelectionService: PlanSelectionService, private router: Router) {}
+
+  ngOnInit(): void {
+    // Obtener el plan seleccionado al cargar el componente
+    this.selectedPlan = this.planSelectionService.getSelectedPlan();
+    
+    // Si no hay plan seleccionado, redirigir al home
+    if (!this.selectedPlan) {
+      console.log('No hay plan seleccionado, redirigiendo al home');
+      this.router.navigate(['/']);
+    }
+  }
 
   // Formatear número de tarjeta
   formatCardNumber(event: any) {
@@ -73,11 +95,18 @@ export class PaymentComponent {
     if (this.isFormValid()) {
       console.log('Procesando pago...', {
         card: this.cardData,
-        billing: this.billingData
+        billing: this.billingData,
+        selectedPlan: this.selectedPlan
       });
       
       // Aquí iría la lógica para procesar el pago
       alert('Pago procesado exitosamente!');
+      
+      // Limpiar el plan seleccionado después del pago exitoso
+      this.planSelectionService.clearSelectedPlan();
+      
+      // Redirigir al dashboard
+      this.router.navigate(['/user']);
     } else {
       alert('Por favor, complete todos los campos requeridos.');
     }
