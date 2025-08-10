@@ -20,17 +20,30 @@
       <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
         <div class="form-group">
           <label for="cedula">Cédula</label>
-          <input id="cedula" formControlName="cedula" type="text" placeholder="Ingrese su número de cédula"/>
+          <input id="cedula" formControlName="cedula" type="text" placeholder="Ingrese su número de cédula" [disabled]="isLoading"/>
+          <div class="error-message" *ngIf="getFieldError(loginForm, 'cedula')">
+            {{ getFieldError(loginForm, 'cedula') }}
+          </div>
         </div>
 
         <div class="form-group">
           <label for="contraseña">Contraseña</label>
-          <input id="contraseña" formControlName="contraseña" type="password" placeholder="Ingrese su contraseña"/>
+          <input id="contraseña" formControlName="contraseña" type="password" placeholder="Ingrese su contraseña" [disabled]="isLoading"/>
+          <div class="error-message" *ngIf="getFieldError(loginForm, 'contraseña')">
+            {{ getFieldError(loginForm, 'contraseña') }}
+          </div>
+        </div>
+
+        <div class="error-message" *ngIf="errorMessage">
+          {{ errorMessage }}
         </div>
 
         <a class="forgot-password" (click)="openRecoverModal()">¿Olvidé mi contraseña?</a>
 
-        <button type="submit" class="btn-login">Continuar</button>
+        <button type="submit" class="btn-login" [disabled]="isLoading">
+          <span *ngIf="!isLoading">Continuar</span>
+          <span *ngIf="isLoading">Iniciando sesión...</span>
+        </button>
       </form>
 
       <p class="register-text">¿Aún no tienes un usuario?
@@ -54,13 +67,28 @@
       <form [formGroup]="recoverForm" (ngSubmit)="sendRecoverEmail()">
         <div class="form-group">
           <label for="email">Su correo asignado</label>
-          <input id="email" formControlName="email" type="email" placeholder="Ingrese su correo electrónico" class="modal-input"/>
+          <input id="email" formControlName="email" type="email" placeholder="Ingrese su correo electrónico" class="modal-input" [disabled]="isRecoverLoading"/>
+          <div class="error-message" *ngIf="getFieldError(recoverForm, 'email')">
+            {{ getFieldError(recoverForm, 'email') }}
+          </div>
         </div>
       </form>
+
+      <!-- Mensajes de éxito y error -->
+      <div class="success-message" *ngIf="recoverMessage">
+        {{ recoverMessage }}
+      </div>
+      
+      <div class="error-message" *ngIf="recoverError">
+        {{ recoverError }}
+      </div>
     </div>
     
     <div class="modal-footer">
-      <button type="button" class="btn-modal-send" (click)="sendRecoverEmail()">Enviar credenciales</button>
+      <button type="button" class="btn-modal-send" (click)="sendRecoverEmail()" [disabled]="isRecoverLoading">
+        <span *ngIf="!isRecoverLoading">Enviar credenciales</span>
+        <span *ngIf="isRecoverLoading">Enviando...</span>
+      </button>
     </div>
   </div>
 </div>

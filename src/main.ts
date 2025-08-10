@@ -7,6 +7,7 @@ import { SupportComponent } from './app/public/pages/support/support.component';
 import { provideHttpClient } from '@angular/common/http';
 import { LoginComponent } from './app/auth/pages/login/login.component';
 import { RegisterComponent } from './app/auth/pages/register/register.component';
+import { ResetPasswordComponent } from './app/auth/pages/reset-password/reset-password.component';
 import { DashboardComponent } from './app/user/pages/dashboard/dashboard.component';
 import { PlansComponent } from './app/user/pages/plans/plans.component';
 import { PaymentComponent } from './app/user/pages/payment/payment.component';
@@ -32,7 +33,8 @@ bootstrapApplication(AppComponent,{
       //Rutas Auth
       {path:'auth', children:[
         {path: 'login', component: LoginComponent, canActivate: [NoAuthGuard]},
-        {path: 'register', component: RegisterComponent, canActivate: [NoAuthGuard]}
+        {path: 'register', component: RegisterComponent, canActivate: [NoAuthGuard]},
+        {path: 'reset-password', component: ResetPasswordComponent, canActivate: [NoAuthGuard]}
       ]},
 
       //Zona protegida
