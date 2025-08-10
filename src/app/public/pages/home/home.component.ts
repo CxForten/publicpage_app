@@ -3,7 +3,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/header/services/auth.service';
-import { PlanSelectionService } from '../../../core/services/plan-selection.service';
+import { PlanSelectionService } from '../../../core/header/services/plan-selection.service';
 import { Observable } from 'rxjs';
 
 // Interfaces para estructurar datos

@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../../core/header/services/auth.service';
-import { PlanSelectionService } from '../../../core/services/plan-selection.service';
+import { PlanSelectionService } from '../../../core/header/services/plan-selection.service';
 
 @Component({
   selector: 'app-login',
@@ -34,6 +34,9 @@ export class LoginComponent {
     this.recoverForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
     });
+
+    // Limpiar datos expirados al inicializar el componente
+    this.planSelectionService.cleanupOldSelections();
   }
 
   /** Redirige al formulario de registro */
@@ -49,10 +52,13 @@ export class LoginComponent {
 
     this.authService.login(this.loginForm.value).subscribe({
       next: () => {
-        // Verificar si hay un plan seleccionado
-        if (this.planSelectionService.hasSelectedPlan()) {
+        // Verificar si hay un plan seleccionado válido y reciente
+        const selectedPlan = this.planSelectionService.getSelectedPlan();
+        if (selectedPlan) {
+          console.log('Plan válido encontrado, redirigiendo a payment:', selectedPlan);
           this.router.navigate(['/user/payment']);
         } else {
+          console.log('No hay plan válido, redirigiendo a dashboard');
           this.router.navigate(['/user']);
         }
       },

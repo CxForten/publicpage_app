@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { PlanSelectionService } from '../../../core/services/plan-selection.service';
+import { PlanSelectionService } from '../../../core/header/services/plan-selection.service';
 import { Router } from '@angular/router';
 
 interface Plan {

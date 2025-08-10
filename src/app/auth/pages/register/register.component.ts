@@ -6,7 +6,7 @@ import { RouterModule, Router } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Observable, of, delay, catchError, throwError } from 'rxjs';
 import { AuthService } from '../../../core/header/services/auth.service';
-import { PlanSelectionService } from '../../../core/services/plan-selection.service';
+import { PlanSelectionService } from '../../../core/header/services/plan-selection.service';
 
 @Component({
   selector: 'app-register',
@@ -332,10 +332,13 @@ export class RegisterComponent {
             this.authService.setAuthenticationState(response.token);
             
             setTimeout(() => {
-              // Verificar si hay un plan seleccionado
-              if (this.planSelectionService.hasSelectedPlan()) {
+              // Verificar si hay un plan seleccionado válido
+              const selectedPlan = this.planSelectionService.getSelectedPlan();
+              if (selectedPlan) {
+                console.log('Plan válido encontrado después del registro, redirigiendo a payment:', selectedPlan);
                 this.router.navigate(['/user/payment']);
               } else {
+                console.log('No hay plan válido después del registro, redirigiendo a dashboard');
                 this.router.navigate(['/user']);
               }
             }, 1500);
@@ -349,10 +352,13 @@ export class RegisterComponent {
             this.authService.login(loginData).subscribe({
               next: () => {
                 setTimeout(() => {
-                  // Verificar si hay un plan seleccionado
-                  if (this.planSelectionService.hasSelectedPlan()) {
+                  // Verificar si hay un plan seleccionado válido
+                  const selectedPlan = this.planSelectionService.getSelectedPlan();
+                  if (selectedPlan) {
+                    console.log('Plan válido encontrado después del auto-login, redirigiendo a payment:', selectedPlan);
                     this.router.navigate(['/user/payment']);
                   } else {
+                    console.log('No hay plan válido después del auto-login, redirigiendo a dashboard');
                     this.router.navigate(['/user']);
                   }
                 }, 1500);

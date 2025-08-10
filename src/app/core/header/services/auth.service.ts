@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, tap, of } from "rxjs";
+import { PlanSelectionService } from './plan-selection.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.loggedIn.asObservable();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private planSelectionService: PlanSelectionService) {
     const token = localStorage.getItem('token');
     // Verificar si el token existe y es válido
     if (token && token.trim() !== '') {
@@ -17,6 +18,9 @@ export class AuthService {
       this.loggedIn.next(false);
       localStorage.removeItem('token'); // Limpiar cualquier token inválido
     }
+    
+    // Limpiar selecciones de planes expiradas al inicializar
+    this.planSelectionService.cleanupOldSelections();
   }
 
   login(data: { cedula: string; contraseña: string }): Observable<any> {

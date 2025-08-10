@@ -29,10 +29,10 @@
               <td class="price-cell">
                 <span class="price-range">{{ plan.priceRange }}</span>
               </td>
-              <td class="speed-cell">{{ plan.speed }}</td>
+              <td class="speed-cell">{{ plan.responseTime }}</td>
               <td class="capacity-cell">{{ plan.capacity }}</td>
               <td class="action-cell">
-                <button class="btn-select" (click)="selectPlan(plan.id)">
+                <button class="btn-select" (click)="selectSpecificPlan(plan)">
                   Seleccionar
                 </button>
               </td>
