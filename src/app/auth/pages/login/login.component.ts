@@ -50,6 +50,11 @@ export class LoginComponent {
     this.router.navigate(['auth/register']);
   }
 
+  /** Redirige a la página de inicio */
+  goHome(): void {
+    this.router.navigate(['/']);
+  }
+
   /** Envía credenciales y navega a /user tras iniciar sesión */
   iniciarSesion(): void {
     if (!this.loginForm.valid) {

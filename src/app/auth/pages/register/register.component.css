@@ -41,6 +41,16 @@ body {
 .logo-wrapper {
   position: relative;
   animation: logoFloat 6s ease-in-out infinite;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.logo-wrapper:hover {
+  transform: scale(1.05);
+}
+
+.logo-wrapper:active {
+  transform: scale(0.98);
 }
 
 /* Logo principal */
@@ -79,12 +89,12 @@ body {
 
 .float-element {
   position: absolute;
-  background: rgba(155, 195, 74, 0.1);
+  background: rgba(149, 179, 89, 0.1);
   border-radius: 50%;
   backdrop-filter: blur(2px);
-  border: 1px solid rgba(155, 195, 74, 0.2);
+  border: 1px solid rgba(149, 179, 89, 0.2);
   box-shadow: 
-    0 0 10px rgba(155, 195, 74, 0.15),
+    0 0 10px rgba(149, 179, 89, 0.15),
     inset 0 0 10px rgba(255, 255, 255, 0.05),
     0 2px 4px rgba(0, 0, 0, 0.05);
 }
@@ -173,100 +183,100 @@ body {
 }
 
 .element-10 {
-  width: 95px;
-  height: 95px;
-  top: 1%;
-  left: 70%;
+  width: 26px;
+  height: 26px;
+  top: 12%;
+  left: 55%;
   animation: bubbleFloat10 31s ease-in-out infinite;
   animation-delay: -7s;
 }
 
 .element-11 {
-  width: 65px;
-  height: 65px;
-  top: 70%;
-  right: 1%;
+  width: 14px;
+  height: 14px;
+  top: 65%;
+  right: 30%;
   animation: bubbleFloat11 27s ease-in-out infinite;
   animation-delay: -14s;
 }
 
 .element-12 {
-  width: 105px;
-  height: 105px;
-  bottom: 30%;
-  right: 1%;
+  width: 22px;
+  height: 22px;
+  bottom: 32%;
+  right: 20%;
   animation: bubbleFloat12 33s ease-in-out infinite;
   animation-delay: -9s;
 }
 
 .element-13 {
-  width: 70px;
-  height: 70px;
-  top: 1%;
-  right: 30%;
+  width: 15px;
+  height: 15px;
+  top: 5%;
+  right: 40%;
   animation: bubbleFloat13 21s ease-in-out infinite;
   animation-delay: -16s;
 }
 
 .element-14 {
-  width: 88px;
-  height: 88px;
-  bottom: 1%;
-  right: 30%;
+  width: 19px;
+  height: 19px;
+  bottom: 8%;
+  right: 42%;
   animation: bubbleFloat14 28s ease-in-out infinite;
   animation-delay: -11s;
 }
 
 .element-15 {
-  width: 72px;
-  height: 72px;
-  bottom: 1%;
-  right: 70%;
+  width: 17px;
+  height: 17px;
+  bottom: 15%;
+  right: 48%;
   animation: bubbleFloat15 26s ease-in-out infinite;
   animation-delay: -19s;
 }
 
 .element-16 {
-  width: 60px;
-  height: 60px;
-  top: 20%;
-  left: 1%;
+  width: 12px;
+  height: 12px;
+  top: 25%;
+  left: 25%;
   animation: bubbleFloat16 23s ease-in-out infinite;
   animation-delay: -4s;
 }
 
 .element-17 {
-  width: 78px;
-  height: 78px;
-  top: 80%;
-  left: 1%;
+  width: 21px;
+  height: 21px;
+  top: 70%;
+  left: 32%;
   animation: bubbleFloat17 27s ease-in-out infinite;
   animation-delay: -13s;
 }
 
 .element-18 {
-  width: 92px;
-  height: 92px;
-  top: 10%;
-  right: 1%;
+  width: 23px;
+  height: 23px;
+  top: 18%;
+  right: 28%;
   animation: bubbleFloat18 29s ease-in-out infinite;
   animation-delay: -6s;
 }
 
 .element-19 {
-  width: 55px;
-  height: 55px;
-  bottom: 70%;
-  right: 1%;
+  width: 11px;
+  height: 11px;
+  bottom: 60%;
+  right: 35%;
   animation: bubbleFloat19 25s ease-in-out infinite;
   animation-delay: -17s;
 }
 
 .element-20 {
-  width: 68px;
-  height: 68px;
-  top: 40%;
-  right: 1%;
+  width: 16px;
+  height: 16px;
+  top: 55%;
+  right: 22%;
   animation: bubbleFloat20 24s ease-in-out infinite;
   animation-delay: -21s;
 }
@@ -289,10 +299,10 @@ body {
 
 @keyframes logoGlow {
   0% {
-    filter: drop-shadow(0 0 20px rgba(155, 195, 74, 0.3));
+    filter: drop-shadow(0 0 20px rgba(149, 179, 89, 0.3));
   }
   100% {
-    filter: drop-shadow(0 0 30px rgba(155, 195, 74, 0.6));
+    filter: drop-shadow(0 0 30px rgba(149, 179, 89, 0.6));
   }
 }
 
@@ -307,110 +317,131 @@ body {
   }
 }
 
-/* Animaciones dinámicas para burbujas */
+@keyframes floatAround {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-100px) translateX(50px) rotate(180deg);
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-200px) translateX(100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Animaciones dinámicas para burbujas con menor opacidad */
 @keyframes bubbleFloat1 {
   0%, 100% {
     transform: translateY(0px) translateX(0px) scale(1);
-    opacity: 0.3;
+    opacity: 0.15;
   }
   25% {
-    transform: translateY(-30px) translateX(20px) scale(1.1);
-    opacity: 0.6;
+    transform: translateY(-20px) translateX(15px) scale(1.1);
+    opacity: 0.25;
   }
   50% {
-    transform: translateY(-10px) translateX(-15px) scale(0.9);
-    opacity: 0.8;
+    transform: translateY(-8px) translateX(-10px) scale(0.9);
+    opacity: 0.3;
   }
   75% {
-    transform: translateY(-40px) translateX(10px) scale(1.05);
-    opacity: 0.5;
+    transform: translateY(-25px) translateX(8px) scale(1.05);
+    opacity: 0.2;
   }
 }
 
 @keyframes bubbleFloat2 {
   0%, 100% {
     transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
-    opacity: 0.4;
+    opacity: 0.18;
   }
   33% {
-    transform: translateY(25px) translateX(-20px) scale(1.15) rotate(120deg);
-    opacity: 0.7;
+    transform: translateY(18px) translateX(-15px) scale(1.15) rotate(120deg);
+    opacity: 0.28;
   }
   66% {
-    transform: translateY(-20px) translateX(25px) scale(0.85) rotate(240deg);
-    opacity: 0.9;
+    transform: translateY(-15px) translateX(18px) scale(0.85) rotate(240deg);
+    opacity: 0.32;
   }
 }
 
 @keyframes bubbleFloat3 {
   0%, 100% {
     transform: translateY(0px) translateX(0px) scale(1);
-    opacity: 0.2;
+    opacity: 0.12;
   }
   20% {
-    transform: translateY(-15px) translateX(-10px) scale(1.2);
-    opacity: 0.5;
+    transform: translateY(-12px) translateX(-8px) scale(1.2);
+    opacity: 0.22;
   }
   40% {
-    transform: translateY(10px) translateX(-25px) scale(0.9);
-    opacity: 0.8;
+    transform: translateY(8px) translateX(-18px) scale(0.9);
+    opacity: 0.28;
   }
   60% {
-    transform: translateY(-25px) translateX(15px) scale(1.1);
-    opacity: 0.6;
+    transform: translateY(-18px) translateX(12px) scale(1.1);
+    opacity: 0.25;
   }
   80% {
-    transform: translateY(5px) translateX(20px) scale(0.95);
-    opacity: 0.4;
+    transform: translateY(4px) translateX(15px) scale(0.95);
+    opacity: 0.18;
   }
 }
 
 @keyframes bubbleFloat4 {
   0%, 100% {
     transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
-    opacity: 0.35;
+    opacity: 0.16;
   }
   25% {
-    transform: translateY(-20px) translateX(15px) scale(1.25) rotate(90deg);
-    opacity: 0.7;
+    transform: translateY(-15px) translateX(12px) scale(1.25) rotate(90deg);
+    opacity: 0.26;
   }
   50% {
-    transform: translateY(15px) translateX(-20px) scale(0.8) rotate(180deg);
-    opacity: 0.9;
+    transform: translateY(12px) translateX(-15px) scale(0.8) rotate(180deg);
+    opacity: 0.3;
   }
   75% {
-    transform: translateY(-10px) translateX(-10px) scale(1.1) rotate(270deg);
-    opacity: 0.6;
+    transform: translateY(-8px) translateX(-8px) scale(1.1) rotate(270deg);
+    opacity: 0.22;
   }
 }
 
 @keyframes bubbleFloat5 {
   0%, 100% {
     transform: translateY(0px) translateX(0px) scale(1);
-    opacity: 0.3;
+    opacity: 0.14;
   }
   30% {
-    transform: translateY(20px) translateX(30px) scale(1.15);
-    opacity: 0.6;
+    transform: translateY(15px) translateX(22px) scale(1.15);
+    opacity: 0.24;
   }
   60% {
-    transform: translateY(-30px) translateX(-15px) scale(0.9);
-    opacity: 0.8;
+    transform: translateY(-22px) translateX(-12px) scale(0.9);
+    opacity: 0.28;
   }
   90% {
-    transform: translateY(10px) translateX(20px) scale(1.05);
-    opacity: 0.4;
+    transform: translateY(8px) translateX(15px) scale(1.05);
+    opacity: 0.18;
   }
 }
 
 @keyframes bubbleFloat6 {
   0%, 100% {
     transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
-    opacity: 0.4;
+    opacity: 0.17;
   }
   50% {
-    transform: translateY(-35px) translateX(25px) scale(1.3) rotate(180deg);
-    opacity: 0.8;
+    transform: translateY(-25px) translateX(18px) scale(1.3) rotate(180deg);
+    opacity: 0.27;
   }
 }
 
@@ -650,10 +681,12 @@ body {
   }
 }
 
+
 /* Hover effect en el logo */
 .logo-wrapper:hover .gaia-logo {
   transform: scale(1.05);
   filter: drop-shadow(0 0 40px rgba(155, 195, 74, 0.8));
+  
 }
 
 .logo-wrapper:hover .logo-glow {
@@ -999,26 +1032,26 @@ input:focus {
   }
   
   /* Ajustar burbujas para tablets */
-  .element-1 { width: 105px; height: 105px; }
-  .element-2 { width: 75px; height: 75px; }
-  .element-3 { width: 120px; height: 120px; }
-  .element-4 { width: 82px; height: 82px; }
-  .element-5 { width: 90px; height: 90px; }
-  .element-6 { width: 60px; height: 60px; }
-  .element-7 { width: 67px; height: 67px; }
-  .element-8 { width: 63px; height: 63px; }
-  .element-9 { width: 56px; height: 56px; }
-  .element-10 { width: 71px; height: 71px; }
-  .element-11 { width: 48px; height: 48px; }
-  .element-12 { width: 78px; height: 78px; }
-  .element-13 { width: 52px; height: 52px; }
-  .element-14 { width: 66px; height: 66px; }
-  .element-15 { width: 54px; height: 54px; }
-  .element-16 { width: 45px; height: 45px; }
-  .element-17 { width: 58px; height: 58px; }
-  .element-18 { width: 69px; height: 69px; }
-  .element-19 { width: 41px; height: 41px; }
-  .element-20 { width: 51px; height: 51px; }
+  .element-1 { width: 20px; height: 20px; }
+  .element-2 { width: 16px; height: 16px; }
+  .element-3 { width: 24px; height: 24px; }
+  .element-4 { width: 18px; height: 18px; }
+  .element-5 { width: 22px; height: 22px; }
+  .element-6 { width: 14px; height: 14px; }
+  .element-7 { width: 19px; height: 19px; }
+  .element-8 { width: 16px; height: 16px; }
+  .element-9 { width: 12px; height: 12px; }
+  .element-10 { width: 20px; height: 20px; }
+  .element-11 { width: 11px; height: 11px; }
+  .element-12 { width: 17px; height: 17px; }
+  .element-13 { width: 12px; height: 12px; }
+  .element-14 { width: 15px; height: 15px; }
+  .element-15 { width: 13px; height: 13px; }
+  .element-16 { width: 9px; height: 9px; }
+  .element-17 { width: 16px; height: 16px; }
+  .element-18 { width: 18px; height: 18px; }
+  .element-19 { width: 8px; height: 8px; }
+  .element-20 { width: 12px; height: 12px; }
 }
 
 /* Media queries para pantallas pequeñas */
@@ -1030,27 +1063,28 @@ input:focus {
 
 /* Media queries para pantallas muy grandes */
 @media (min-width: 1920px) {
-  .element-1 { width: 180px; height: 180px; }
-  .element-2 { width: 130px; height: 130px; }
-  .element-3 { width: 210px; height: 210px; }
-  .element-4 { width: 140px; height: 140px; }
-  .element-5 { width: 155px; height: 155px; }
-  .element-6 { width: 105px; height: 105px; }
-  .element-7 { width: 115px; height: 115px; }
-  .element-8 { width: 110px; height: 110px; }
-  .element-9 { width: 95px; height: 95px; }
-  .element-10 { width: 120px; height: 120px; }
-  .element-11 { width: 85px; height: 85px; }
-  .element-12 { width: 135px; height: 135px; }
-  .element-13 { width: 90px; height: 90px; }
-  .element-14 { width: 115px; height: 115px; }
-  .element-15 { width: 92px; height: 92px; }
-  .element-16 { width: 80px; height: 80px; }
-  .element-17 { width: 100px; height: 100px; }
-  .element-18 { width: 122px; height: 122px; }
-  .element-19 { width: 75px; height: 75px; }
-  .element-20 { width: 88px; height: 88px; }
+  .element-1 { width: 32px; height: 32px; }
+  .element-2 { width: 26px; height: 26px; }
+  .element-3 { width: 38px; height: 38px; }
+  .element-4 { width: 28px; height: 28px; }
+  .element-5 { width: 34px; height: 34px; }
+  .element-6 { width: 22px; height: 22px; }
+  .element-7 { width: 30px; height: 30px; }
+  .element-8 { width: 25px; height: 25px; }
+  .element-9 { width: 20px; height: 20px; }
+  .element-10 { width: 32px; height: 32px; }
+  .element-11 { width: 18px; height: 18px; }
+  .element-12 { width: 28px; height: 28px; }
+  .element-13 { width: 19px; height: 19px; }
+  .element-14 { width: 24px; height: 24px; }
+  .element-15 { width: 21px; height: 21px; }
+  .element-16 { width: 15px; height: 15px; }
+  .element-17 { width: 26px; height: 26px; }
+  .element-18 { width: 29px; height: 29px; }
+  .element-19 { width: 14px; height: 14px; }
+  .element-20 { width: 20px; height: 20px; }
 }
+
 
 /* Estilos del Modal de Términos y Condiciones */
 .modal-overlay {

@@ -445,4 +445,9 @@ export class RegisterComponent {
     this.registerForm.patchValue({ terminos: true });
     this.closeTermsModal();
   }
+
+  /** Redirige a la página de inicio */
+  goHome(): void {
+    this.router.navigate(['/']);
+  }
 }

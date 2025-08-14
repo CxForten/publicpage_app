@@ -631,3 +631,38 @@
   }
 }
 
+/* ============================== */
+/* ANIMATIONS                     */
+/* ============================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.features-section {
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.pricing-section {
+  animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.reviews-section {
+  animation: fadeInUp 0.6s ease-out 0.6s both;
+}
+
+.footer {
+  animation: fadeInUp 0.6s ease-out 0.8s both;
+}
+

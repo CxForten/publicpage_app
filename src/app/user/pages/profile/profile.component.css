@@ -411,3 +411,42 @@
     }
   }
 }
+
+/* ============================== */
+/* ANIMATIONS                     */
+/* ============================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.settings-container {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.section-wrapper:nth-child(1) {
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.section-wrapper:nth-child(3) {
+  animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.section-wrapper:nth-child(5) {
+  animation: fadeInUp 0.6s ease-out 0.6s both;
+}
+
+.section-wrapper:nth-child(7) {
+  animation: fadeInUp 0.6s ease-out 0.8s both;
+}
+
+.section-wrapper:nth-child(9) {
+  animation: fadeInUp 0.6s ease-out 1.0s both;
+}
