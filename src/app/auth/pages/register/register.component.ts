@@ -185,7 +185,6 @@ export class RegisterComponent {
             });
             this.cedulaValida = true;
             this.validandoCedula = false;
-            this.mostrarExito('Cédula validada correctamente');
             
             console.log('Datos obtenidos de la API:', data);
           } else {
@@ -281,6 +280,9 @@ export class RegisterComponent {
           '1714616123': { nombres: 'Ana Sofía', apellidos: 'García Torres' },
           '0926687856': { nombres: 'Luis Miguel', apellidos: 'Sánchez Ruiz' },
           '1313700120': { nombres: 'Christofer Javier', apellidos: 'Chavarria Vera' },
+          '1309520268': { nombres: 'Yira Lourdes', apellidos: 'Vera Molina' },
+
+
         };
 
         // Simular respuesta de API con datos de prueba
@@ -295,9 +297,18 @@ export class RegisterComponent {
   }
 
   registrar(): void {
+    // Marcar todos los campos como tocados primero para mostrar errores
+    this.markAllFieldsAsTouched();
+    
     if (!this.registerForm.valid) {
-      this.mostrarErroresFormulario();
-      return;
+      console.log('Formulario inválido, errores por campo:');
+      Object.keys(this.registerForm.controls).forEach(key => {
+        const control = this.registerForm.get(key);
+        if (control?.invalid) {
+          console.log(`${key}: `, control.errors);
+        }
+      });
+      return; // No mostrar error general, solo errores individuales
     }
 
     if (!this.cedulaValida) {
@@ -381,57 +392,99 @@ export class RegisterComponent {
   }
 
   private mostrarErroresFormulario(): void {
-    const errores = [];
-    
-    if (this.registerForm.get('cedula')?.invalid) {
-      if (this.registerForm.get('cedula')?.errors?.['required']) {
-        errores.push('La cédula es requerida');
-      }
-      if (this.registerForm.get('cedula')?.errors?.['pattern']) {
-        errores.push('La cédula debe tener 10 dígitos');
-      }
-    }
-    
-    if (this.registerForm.get('nombres_completos')?.invalid) {
-      errores.push('Los nombres y apellidos son requeridos');
-    }
-    
-    if (this.registerForm.get('correo')?.invalid) {
-      if (this.registerForm.get('correo')?.errors?.['required']) {
-        errores.push('El correo electrónico es requerido');
-      }
-      if (this.registerForm.get('correo')?.errors?.['email']) {
-        errores.push('El correo electrónico no es válido');
-      }
-    }
-    
-    if (this.registerForm.get('contraseña')?.invalid) {
-      if (this.registerForm.get('contraseña')?.errors?.['required']) {
-        errores.push('La contraseña es requerida');
-      }
-      if (this.registerForm.get('contraseña')?.errors?.['minlength']) {
-        errores.push('La contraseña debe tener al menos 6 caracteres');
-      }
-    }
-    
-    if (this.registerForm.get('confirmar')?.invalid) {
-      if (this.registerForm.get('confirmar')?.errors?.['required']) {
-        errores.push('Debe confirmar la contraseña');
-      }
-      if (this.registerForm.get('confirmar')?.errors?.['contrasenaNoCoincide']) {
-        errores.push('Las contraseñas no coinciden');
-      }
-    }
-    
-    if (this.registerForm.get('terminos')?.invalid) {
-      errores.push('Debe aceptar los términos y condiciones');
-    }
-    
-    if (errores.length > 0) {
-      this.mostrarError('Errores en el formulario:\n• ' + errores.join('\n• '));
-    }
+    // En lugar de mostrar errores generales, marcar todos los campos como tocados
+    // para que se muestren los errores individuales debajo de cada campo
+    this.markAllFieldsAsTouched();
   }
 
+  /**
+   * Marca todos los campos del formulario como tocados para activar la validación visual
+   */
+  private markAllFieldsAsTouched(): void {
+    Object.keys(this.registerForm.controls).forEach(field => {
+      const control = this.registerForm.get(field);
+      control?.markAsTouched();
+      // Debug: verificar que el campo se marque como tocado
+      console.log(`Campo ${field}: touched=${control?.touched}, invalid=${control?.invalid}`);
+    });
+  }
+
+  // ============================
+  // MÉTODOS HELPER PARA ERRORES
+  // ============================
+
+  /**
+   * Verifica si un campo específico tiene errores y ha sido tocado
+   */
+  hasFieldError(fieldName: string): boolean {
+    const field = this.registerForm.get(fieldName);
+    return !!(field && field.invalid && field.touched);
+  }
+
+  /**
+   * Obtiene el mensaje de error específico para un campo
+   */
+  getFieldErrorMessage(fieldName: string): string {
+    const field = this.registerForm.get(fieldName);
+    
+    if (!field || !field.errors || !field.touched) {
+      return '';
+    }
+
+    // Mensajes específicos por tipo de error
+    if (field.errors['required']) {
+      switch (fieldName) {
+        case 'cedula': return 'La cédula es requerida';
+        case 'correo': return 'El correo electrónico es requerido';
+        case 'contraseña': return 'La contraseña es requerida';
+        case 'confirmar': return 'La confirmación de contraseña es requerida';
+        case 'terminos': return 'Debe aceptar los términos y condiciones';
+        case 'nombres_completos': return 'Los nombres y apellidos son requeridos';
+        default: return 'Este campo es requerido';
+      }
+    }
+
+    if (field.errors['email']) {
+      return 'El formato del correo electrónico no es válido';
+    }
+
+    if (field.errors['minlength']) {
+      const minLength = field.errors['minlength'].requiredLength;
+      if (fieldName === 'contraseña') {
+        return `La contraseña debe tener al menos ${minLength} caracteres`;
+      }
+      return `Mínimo ${minLength} caracteres requeridos`;
+    }
+
+    if (field.errors['pattern']) {
+      switch (fieldName) {
+        case 'cedula': return 'La cédula debe tener 10 dígitos';
+        case 'ruc': return 'El RUC debe tener 13 dígitos';
+        default: return 'El formato no es válido';
+      }
+    }
+
+    if (field.errors['contrasenaNoCoincide']) {
+      return 'Las contraseñas no coinciden';
+    }
+
+    // Error genérico
+    return 'Este campo tiene un error';
+  }
+
+  /**
+   * Obtiene las clases CSS para un campo específico
+   */
+  getFieldClasses(fieldName: string): string {
+    const field = this.registerForm.get(fieldName);
+    const classes = [];
+
+    if (field?.invalid && field?.touched) {
+      classes.push('error-field');
+    }
+
+    return classes.join(' ');
+  }
 
   openTermsModal(): void {
     this.showTermsModal = true;

@@ -33,8 +33,15 @@ export class LoginComponent {
     private passwordResetService: PasswordResetService
   ) {
     this.loginForm = this.fb.group({
-      cedula:    ['', [Validators.required]],
+      cedula: ['', [Validators.required]],
       contraseña: ['', [Validators.required]]
+    });
+
+    // Limpiar errores cuando el usuario escriba
+    this.loginForm.valueChanges.subscribe(() => {
+      if (this.errorMessage) {
+        this.errorMessage = '';
+      }
     });
 
     this.recoverForm = this.fb.group({
@@ -80,8 +87,20 @@ export class LoginComponent {
       },
       error: err => {
         this.isLoading = false;
-        this.errorMessage = err.error?.message ?? 'Error al iniciar sesión';
-        console.error(err);
+        console.error('Error de login:', err);
+        
+        // Manejo específico de diferentes tipos de errores
+        if (err.status === 401) {
+          this.errorMessage = 'Usuario o contraseña incorrectos';
+        } else if (err.status === 404) {
+          this.errorMessage = 'Usuario no encontrado';
+        } else if (err.status === 500) {
+          this.errorMessage = 'Error del servidor. Intente más tarde';
+        } else if (err.error?.message) {
+          this.errorMessage = err.error.message;
+        } else {
+          this.errorMessage = 'Error al iniciar sesión. Verifique sus credenciales';
+        }
       }
     });
   }
@@ -156,5 +175,11 @@ export class LoginComponent {
     }
     
     return '';
+  }
+
+  /** Verifica si un campo específico tiene errores y ha sido tocado */
+  hasFieldError(formGroup: FormGroup, fieldName: string): boolean {
+    const field = formGroup.get(fieldName);
+    return !!(field && field.invalid && field.touched);
   }
 }

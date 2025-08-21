@@ -751,13 +751,35 @@ input {
   transition: all 0.3s ease;
 }
 
-input:hover {
+/* Estado normal de hover */
+input:hover:not(.error-field):not(.ng-invalid.ng-touched) {
   background-color: #f2f2f2;
 }
 
-input:focus {
+/* Estado normal de focus */
+input:focus:not(.error-field):not(.ng-invalid.ng-touched) {
   border-bottom: 2px solid #9bc34a;
   background-color: #fff;
+}
+
+/* ESTADOS DE ERROR PARA INPUTS - MÁXIMA PRIORIDAD */
+input.error-field,
+input.ng-invalid.ng-touched {
+  border-bottom: 2px solid #dc2626 !important;
+  background-color: #fef2f2 !important;
+}
+
+input.error-field:hover,
+input.ng-invalid.ng-touched:hover {
+  border-bottom: 2px solid #dc2626 !important;
+  background-color: #fee2e2 !important;
+}
+
+input.error-field:focus,
+input.ng-invalid.ng-touched:focus {
+  border-bottom: 2px solid #dc2626 !important;
+  background-color: #fef2f2 !important;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.1) !important;
 }
 
 .btn-login {
@@ -977,6 +999,24 @@ input:focus {
 .checkbox-container a {
   color: #2f3b53;
   text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.checkbox-container a:hover {
+  color: #9bc34a;
+}
+
+/* Enlace de términos en estado de error */
+.checkbox-container.has-error a,
+.checkbox-container input.ng-invalid.ng-touched ~ label a,
+.checkbox-container input.error-field ~ label a {
+  color: #dc2626 !important;
+}
+
+.checkbox-container.has-error a:hover,
+.checkbox-container input.ng-invalid.ng-touched ~ label a:hover,
+.checkbox-container input.error-field ~ label a:hover {
+  color: #dc2626 !important;
 }
 
 /* Responsivo */
@@ -1366,4 +1406,289 @@ input:focus {
     height: 20px;
   }
 }
+
+/* ============================== */
+/* ESTILOS PARA CAMPOS CON ERRORES */
+/* ============================== */
+
+/* Campo con error usando clases Angular - con mayor especificidad */
+.form-group input.ng-invalid.ng-touched,
+.empresa-form input.ng-invalid.ng-touched,
+input.ng-invalid.ng-touched {
+  border-bottom: 2px solid #dc2626 !important;
+  background-color: #fef2f2 !important;
+}
+
+/* Campo con error usando clase personalizada - con mayor especificidad */
+.form-group input.error-field,
+.empresa-form input.error-field,
+input.error-field {
+  border-bottom: 2px solid #dc2626 !important;
+  background-color: #fef2f2 !important;
+}
+
+/* Campo con error al hacer hover - con mayor especificidad */
+.form-group input.ng-invalid.ng-touched:hover,
+.empresa-form input.ng-invalid.ng-touched:hover,
+input.ng-invalid.ng-touched:hover,
+.form-group input.error-field:hover,
+.empresa-form input.error-field:hover,
+input.error-field:hover {
+  background-color: #fee2e2 !important;
+  border-bottom: 2px solid #dc2626 !important;
+}
+
+/* Campo con error al hacer focus - con mayor especificidad */
+.form-group input.ng-invalid.ng-touched:focus,
+.empresa-form input.ng-invalid.ng-touched:focus,
+input.ng-invalid.ng-touched:focus,
+.form-group input.error-field:focus,
+.empresa-form input.error-field:focus,
+input.error-field:focus {
+  border-bottom: 2px solid #dc2626 !important;
+  background-color: #fef2f2 !important;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.1) !important;
+}
+
+/* Texto de error individual para cada campo */
+.field-error {
+  color: #dc2626 !important;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  font-weight: 500 !important;
+  display: block !important;
+  animation: errorSlideIn 0.3s ease-out;
+  line-height: 1.2;
+}
+
+/* Selectores más específicos para asegurar que se apliquen */
+.form-group .field-error,
+.empresa-form .field-error,
+.checkbox-container .field-error {
+  color: #dc2626 !important;
+  font-size: 0.75rem !important;
+  margin-top: 0.25rem !important;
+  font-weight: 500 !important;
+  display: block !important;
+  background: none !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+/* Asegurar que no haya conflictos con otros estilos */
+span.field-error {
+  color: #dc2626 !important;
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* Animación para mensajes de error de campos */
+@keyframes errorSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Asegurar que los campos con error tengan prioridad visual */
+.form-group input.error-field,
+.form-group input.ng-invalid.ng-touched {
+  border-bottom: 2px solid #dc2626 !important;
+  background-color: #fef2f2 !important;
+}
+
+.form-group input.error-field:focus,
+.form-group input.ng-invalid.ng-touched:focus {
+  border-bottom: 2px solid #dc2626 !important;
+  background-color: #fef2f2 !important;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.1) !important;
+}
+
+/* Estilos específicos para diferentes tipos de error */
+.error-required {
+  color: #dc2626;
+}
+
+.error-pattern {
+  color: #dc2626;
+}
+
+.error-email {
+  color: #dc2626;
+}
+
+.error-minlength {
+  color: #dc2626;
+}
+
+.error-custom {
+  color: #dc2626;
+}
+
+/* Checkbox con error */
+input[type="checkbox"].ng-invalid.ng-touched,
+input[type="checkbox"].error-field {
+  outline: 2px solid #dc2626;
+  outline-offset: 2px;
+}
+
+/* ============================== */
+/* ESTILOS DE MÁXIMA PRIORIDAD PARA ERRORES */
+/* ============================== */
+
+/* Forzar color rojo en mensajes de error con máxima especificidad */
+.login-box .field-error,
+.login-box span.field-error,
+form .field-error,
+form span.field-error,
+.form-group span.field-error,
+.empresa-form span.field-error,
+.checkbox-container span.field-error {
+  color: #dc2626 !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  margin-top: 0.25rem !important;
+  display: block !important;
+  text-align: left !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  text-decoration: none !important;
+  line-height: 1.2 !important;
+}
+
+/* Para asegurar que los errores se vean en cualquier contexto */
+* .field-error {
+  color: #dc2626 !important;
+}
+
+/* Override específico para cualquier selector que pueda interferir */
+.field-error, 
+span.field-error,
+div.field-error {
+  color: #dc2626 !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+}
+
+/* Clase específica para mensajes de error rojos */
+.error-message-red {
+  color: #dc2626 !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  margin-top: 0.25rem !important;
+  display: block !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  text-decoration: none !important;
+  line-height: 1.2 !important;
+}
+
+span.error-message-red,
+.form-group .error-message-red,
+.form-group span.error-message-red {
+  color: #dc2626 !important;
+}
+
+/* ============================== */
+/* ESTILOS DE MÁXIMA PRIORIDAD PARA INPUTS CON ERROR */
+/* ============================== */
+
+/* Forzar bordes rojos en inputs con error - máxima especificidad */
+.login-box input.error-field,
+.login-box input.ng-invalid.ng-touched,
+form input.error-field,
+form input.ng-invalid.ng-touched,
+.form-group input.error-field,
+.form-group input.ng-invalid.ng-touched,
+.empresa-form input.error-field,
+.empresa-form input.ng-invalid.ng-touched {
+  border-bottom: 2px solid #dc2626 !important;
+  background-color: #fef2f2 !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Estados hover y focus para inputs con error */
+.login-box input.error-field:hover,
+.login-box input.ng-invalid.ng-touched:hover,
+form input.error-field:hover,
+form input.ng-invalid.ng-touched:hover,
+.form-group input.error-field:hover,
+.form-group input.ng-invalid.ng-touched:hover,
+.empresa-form input.error-field:hover,
+.empresa-form input.ng-invalid.ng-touched:hover {
+  border-bottom: 2px solid #dc2626 !important;
+  background-color: #fee2e2 !important;
+}
+
+.login-box input.error-field:focus,
+.login-box input.ng-invalid.ng-touched:focus,
+form input.error-field:focus,
+form input.ng-invalid.ng-touched:focus,
+.form-group input.error-field:focus,
+.form-group input.ng-invalid.ng-touched:focus,
+.empresa-form input.error-field:focus,
+.empresa-form input.ng-invalid.ng-touched:focus {
+  border-bottom: 2px solid #dc2626 !important;
+  background-color: #fef2f2 !important;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.1) !important;
+  outline: none !important;
+}
+
+/* ============================== */
+/* REGLAS DE ÚLTIMO RECURSO PARA INPUTS ROJOS */
+/* ============================== */
+
+/* Forzar inputs rojos con especificidad máxima usando atributo y clase */
+input[formControlName].error-field,
+input[id].error-field,
+.form-group input[type="text"].error-field,
+.form-group input[type="email"].error-field,
+.form-group input[type="password"].error-field {
+  border-bottom: 2px solid #dc2626 !important;
+  background-color: #fef2f2 !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+/* Sobrescribir cualquier estilo de focus normal cuando hay error */
+input[formControlName].error-field:focus,
+input[id].error-field:focus,
+.form-group input[type="text"].error-field:focus,
+.form-group input[type="email"].error-field:focus,
+.form-group input[type="password"].error-field:focus {
+  border-bottom: 2px solid #dc2626 !important;
+  background-color: #fef2f2 !important;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.1) !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+/* ============================== */
+/* OVERRIDE EXTREMO PARA TESTING */
+/* ============================== */
+
+/* Forzar TODOS los inputs con clase error-field a verse rojos */
+.error-field {
+  border-bottom: 2px solid red !important;
+  background-color: #ffcccc !important;
+}
+
+.error-field:hover {
+  border-bottom: 2px solid red !important;
+  background-color: #ffdddd !important;
+}
+
+.error-field:focus {
+  border-bottom: 2px solid red !important;
+  background-color: #ffcccc !important;
+  box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2) !important;
 }

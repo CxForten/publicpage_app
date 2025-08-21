@@ -40,31 +40,73 @@
         <div class="form-group">
           <label for="cedula">Cédula</label>
           <div class="form-row">
-            <input id="cedula" formControlName="cedula" placeholder="Cédula"/>
+            <input id="cedula" 
+                   formControlName="cedula" 
+                   placeholder="Cédula"
+                   [class.error-field]="hasFieldError('cedula')"/>
             <button type="button" (click)="validarCedula()" class="btn-login" [disabled]="validandoCedula">
               {{ validandoCedula ? 'Validando...' : 'Validar' }}
             </button>
           </div>
+          <span *ngIf="hasFieldError('cedula')" 
+                class="field-error" 
+                style="color: #dc2626 !important; font-size: 0.75rem; font-weight: 500; margin-top: 0.25rem; display: block;">
+            {{ getFieldErrorMessage('cedula') }}
+          </span>
         </div>
 
         <div class="form-group">
           <label for="nombres_completos">Nombres y Apellidos</label>
-          <input id="nombres_completos" formControlName="nombres_completos" placeholder="Nombres y Apellidos" readonly/>
+          <input id="nombres_completos" 
+                 formControlName="nombres_completos" 
+                 placeholder="Nombres y Apellidos" 
+                 readonly
+                 [class.error-field]="hasFieldError('nombres_completos')"/>
+          <div *ngIf="hasFieldError('nombres_completos')" 
+               style="color: red; font-size: 12px; font-weight: 500; margin-top: 4px; display: block;">
+            {{ getFieldErrorMessage('nombres_completos') }}
+          </div>
         </div>
 
         <div class="form-group">
           <label for="correo">Correo electrónico</label>
-          <input id="correo" formControlName="correo" placeholder="Correo electrónico"/>
+          <input id="correo" 
+                 formControlName="correo" 
+                 placeholder="Correo electrónico"
+                 [class.error-field]="hasFieldError('correo')"/>
+          <span *ngIf="hasFieldError('correo')" 
+                class="field-error"
+                style="color: #dc2626 !important; font-size: 0.75rem; font-weight: 500; margin-top: 0.25rem; display: block;">
+            {{ getFieldErrorMessage('correo') }}
+          </span>
         </div>
 
         <div class="form-group">
           <label for="contraseña">Contraseña</label>
-          <input id="contraseña" type="password" formControlName="contraseña" placeholder="Contraseña"/>
+          <input id="contraseña" 
+                 type="password" 
+                 formControlName="contraseña" 
+                 placeholder="Contraseña"
+                 [class.error-field]="hasFieldError('contraseña')"/>
+          <span *ngIf="hasFieldError('contraseña')" 
+                class="field-error"
+                style="color: #dc2626 !important; font-size: 0.75rem; font-weight: 500; margin-top: 0.25rem; display: block;">
+            {{ getFieldErrorMessage('contraseña') }}
+          </span>
         </div>
 
         <div class="form-group">
           <label for="confirmar">Confirmar contraseña</label>
-          <input id="confirmar" type="password" formControlName="confirmar" placeholder="Confirmar contraseña"/>
+          <input id="confirmar" 
+                 type="password" 
+                 formControlName="confirmar" 
+                 placeholder="Confirmar contraseña"
+                 [class.error-field]="hasFieldError('confirmar')"/>
+          <span *ngIf="hasFieldError('confirmar')" 
+                class="field-error"
+                style="color: #dc2626 !important; font-size: 0.75rem; font-weight: 500; margin-top: 0.25rem; display: block;">
+            {{ getFieldErrorMessage('confirmar') }}
+          </span>
         </div>
 
         <div class="form-group">
@@ -75,30 +117,61 @@
           <div *ngIf="mostrarEmpresa" class="empresa-form" [@slideIn]>
             <div class="form-group" style="--index: 0;">
               <label for="nombre_empresa">Nombre Empresa</label>
-              <input id="nombre_empresa" formControlName="nombre_empresa" placeholder="Nombre Empresa"/>
+              <input id="nombre_empresa" 
+                     formControlName="nombre_empresa" 
+                     placeholder="Nombre Empresa"
+                     [class.error-field]="hasFieldError('nombre_empresa')"/>
+              <span *ngIf="hasFieldError('nombre_empresa')" class="field-error">
+                {{ getFieldErrorMessage('nombre_empresa') }}
+              </span>
             </div>
             <div class="form-group" style="--index: 1;">
               <label for="ruc">RUC</label>
-              <input id="ruc" formControlName="ruc" placeholder="RUC"/>
+              <input id="ruc" 
+                     formControlName="ruc" 
+                     placeholder="RUC"
+                     [class.error-field]="hasFieldError('ruc')"/>
+              <span *ngIf="hasFieldError('ruc')" class="field-error">
+                {{ getFieldErrorMessage('ruc') }}
+              </span>
             </div>
             <div class="form-group" style="--index: 2;">
               <label for="correo_empresarial">Correo empresarial</label>
-              <input id="correo_empresarial" formControlName="correo_empresarial" placeholder="Correo empresarial"/>
+              <input id="correo_empresarial" 
+                     formControlName="correo_empresarial" 
+                     placeholder="Correo empresarial"
+                     [class.error-field]="hasFieldError('correo_empresarial')"/>
+              <span *ngIf="hasFieldError('correo_empresarial')" class="field-error">
+                {{ getFieldErrorMessage('correo_empresarial') }}
+              </span>
             </div>
             <div class="form-group" style="--index: 3;">
               <label for="cargo">Cargo</label>
-              <input id="cargo" formControlName="cargo" placeholder="Cargo"/>
+              <input id="cargo" 
+                     formControlName="cargo" 
+                     placeholder="Cargo"
+                     [class.error-field]="hasFieldError('cargo')"/>
+              <span *ngIf="hasFieldError('cargo')" class="field-error">
+                {{ getFieldErrorMessage('cargo') }}
+              </span>
             </div>
           </div>
         </div>
 
-        <div class="form-group checkbox-container">
-          <input type="checkbox" formControlName="terminos" />
+        <div class="form-group checkbox-container" [class.has-error]="hasFieldError('terminos')">
+          <input type="checkbox" 
+                 formControlName="terminos"
+                 [class.error-field]="hasFieldError('terminos')" />
           <label>
             <span>
               Acepto los <a (click)="openTermsModal()" style="cursor: pointer;">términos y condiciones</a>
             </span>
           </label>
+          <span *ngIf="hasFieldError('terminos')" 
+                class="field-error" 
+                style="color: #dc2626 !important; font-size: 0.75rem; font-weight: 500; display: block; margin-top: 0.5rem;">
+            {{ getFieldErrorMessage('terminos') }}
+          </span>
         </div>
 
         <button type="submit" class="btn-login">Crear cuenta</button>

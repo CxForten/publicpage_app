@@ -1,6 +1,9 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
+import { BalanceService } from '../../../core/header/services/balance.service';
+import { Observable, Subscription } from 'rxjs';
 
 interface Preference {
   id: string;
@@ -16,9 +19,13 @@ interface Preference {
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   consultaForm: FormGroup;
   showPreferencesModal = false;
+  
+  // Propiedades para el saldo
+  userBalance$: Observable<number>;
+  private subscriptions = new Subscription();
   
   preferences: Preference[] = [
     {
@@ -109,15 +116,36 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private router: Router,
+    private balanceService: BalanceService
   ) {
     this.consultaForm = this.fb.group({
       cedula: ['']
     });
+    
+    // Inicializar el observable del saldo
+    this.userBalance$ = this.balanceService.balance$;
   }
 
   ngOnInit() {
     this.appleMobileCenteringFix();
+    
+    // Cargar el saldo del usuario al inicializar el componente
+    const balanceSubscription = this.balanceService.loadUserBalance().subscribe({
+      next: (response) => {
+        console.log('Balance loaded successfully:', response);
+      },
+      error: (error) => {
+        console.error('Error loading balance:', error);
+      }
+    });
+    
+    this.subscriptions.add(balanceSubscription);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
   private appleMobileCenteringFix() {
@@ -177,6 +205,14 @@ export class DashboardComponent implements OnInit {
   openPreferencesModal() {
     this.showPreferencesModal = true;
     document.body.style.overflow = 'hidden';
+  }
+
+  formatBalance(balance: number): string {
+    return this.balanceService.formatBalance(balance);
+  }
+
+  goToPlans() {
+    this.router.navigate(['/plans']);
   }
 
   closePreferencesModal() {

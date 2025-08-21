@@ -10,9 +10,9 @@
         <div class="saldo-display">
           <div class="saldo-amount">
             <span class="currency">$</span>
-            <span class="amount">3,44</span>
+            <span class="amount">{{ formatBalance((userBalance$ | async) || 0) }}</span>
           </div>
-          <button class="btn-add-saldo">
+          <button class="btn-add-saldo" (click)="goToPlans()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="12" y1="5" x2="12" y2="19"></line>
               <line x1="5" y1="12" x2="19" y2="12"></line>
